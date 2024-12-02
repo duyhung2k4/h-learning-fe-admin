@@ -8,7 +8,6 @@ import { useNotification } from "@/hook/notification.hook";
 import { useNavigate } from "react-router";
 import { ROUTER } from "@/constants/router";
 
-import textClasses from "@/styles/text.module.css";
 import PasswordInputCustom from "@/components/passwordInput";
 
 
@@ -46,11 +45,7 @@ const Login: React.FC = () => {
     return (
         <>
             <Text size="36px" fw={600}>Đăng nhập</Text>
-            <Text>
-                Bạn đã chưa tài khoản?&nbsp;
-                <span onClick={() => navigation(ROUTER.REGISTER.href)} className={textClasses.high_light}>Đăng kí</span>
-            </Text>
-
+            <Text>Trang quản lí khóa học của riêng bạn</Text>
             <form id="login" onSubmit={formLogin.onSubmit(handleLogin)}>
                 <Stack gap={16} mt={24}>
                     <TextInput

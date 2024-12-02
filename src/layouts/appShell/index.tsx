@@ -2,11 +2,12 @@ import React, { Suspense, useMemo } from "react";
 import Cookies from "js-cookie";
 
 import { useNavigate, useOutlet } from "react-router";
-import { Box, Button, Group, LoadingOverlay, Text } from '@mantine/core';
+import { Avatar, Box, Button, Group, LoadingOverlay, Stack, Text } from '@mantine/core';
 import { ObjectRouter, ROUTER } from "@/constants/router";
 import { TOKEN_TYPE } from "@/model/variable";
 
 import classes from "./styles.module.css";
+import { IconLayoutDashboard } from "@tabler/icons-react";
 
 
 
@@ -41,45 +42,49 @@ const AppshellLayout: React.FC = () => {
 
     return (
         <Suspense fallback={<LoadingOverlay visible overlayProps={{ radius: "sm", blur: 2 }} />}>
-            <Group
-                w={"100%"}
-                justify="space-between"
-                align="center"
-                className={classes.header}
-                pl={16}
-                pr={16}
-            >
-                <Group>
-                    <Text><span>H</span>Learning</Text>
-                </Group>
+            <Group h={"100vh"} w={"100%"} gap={0}>
+                <Stack className={classes.nav} gap={0}>
+                    <Group p={16} pb={36}>
+                        <Text><span className={classes.title_app}>H</span>Learning</Text>
+                    </Group>
+                    <Stack className={classes.links}>
 
-                <Group gap={24}>
-                    {
-                        links.map((l, i) => {
-                            const Icon = l.icon;
-                            return (
-                                <Group
-                                    key={i}
-                                    className={`${classes.link_root} ${pathname === l.href ? classes.active_link : null}`}
-                                    onClick={() => handleNavigation(l.href)}
-                                    gap={0}
-                                >
-                                    <Group gap={8} className={classes.link} align="center">
-                                        {Icon && <Icon className={classes.icon} />}
-                                        <Text>{l.name}</Text>
+                        {
+                            links.map((l, i) => {
+                                const Icon = l.icon;
+                                const active = l.href === pathname;
+
+                                return (
+                                    <Group 
+                                        className={`${classes.link_root} ${active ? classes.active_link : null}`} 
+                                        gap={0} w={"100%"}
+                                        onClick={() => handleNavigation(l.href)}
+                                    >
+                                        <Box className={classes.line_link}></Box>
+                                        <Group className={classes.link} gap={0}>
+                                            <Group w={"90%"} gap={0} className={classes.group_text}>
+                                                <Group justify="center" align="center" style={{ flex: 1 }} pt={8} pb={8} pl={16} pr={16}>
+                                                    {Icon && <Icon/>}
+                                                </Group>
+                                                <Box className={classes.text_link}>
+                                                    {l.name}
+                                                </Box>
+                                            </Group>
+                                        </Group>
                                     </Group>
-                                    <Box className={classes.line_link}></Box>
-                                </Group>
-                            )
-                        })
-                    }
-                </Group>
+                                )
+                            })
+                        }
 
-                <Group>
-                    <Button>Đăng nhập</Button>
-                </Group>
+
+                    </Stack>
+                    <Group p={16} justify="start" align="center">
+                        <Avatar radius="xl" />
+                        <Text>Admin</Text>
+                    </Group>
+                </Stack>
+                <Group h={"100%"} justify="start" align="start">{outlet}</Group>
             </Group>
-            {outlet}
         </Suspense>
     )
 }
