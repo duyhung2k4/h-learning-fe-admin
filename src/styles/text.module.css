@@ -1,0 +1,8 @@
+.high_light {
+    color: #6E54B5;
+    cursor: pointer;
+}
+.high_light:hover {
+    text-decoration: underline;
+    color: #8d6bea !important;
+}

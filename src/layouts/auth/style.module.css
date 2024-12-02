@@ -1,0 +1,24 @@
+.root {
+    height: 100vh;
+    width: 100vw;
+    padding: 16px;
+}
+
+.content {
+    background-color: #000;
+    border-radius: 16px;
+    width: 100%;
+    height: 100%;
+}
+
+.content_mobile {
+    background-color: #000;
+    border-radius: 16px;
+    max-width: 480px;
+    height: 100%;
+    width: 100%;
+}
+
+.form {
+    width: 60%;
+}

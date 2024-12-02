@@ -1,0 +1,48 @@
+:root {
+    --text-color: #969696;
+    --icon-color:#969696;
+    --line-link-color: unset;
+}
+
+.link_root {
+    display: block;
+}
+
+.link {
+    cursor: pointer;
+    padding: 24px 0px;
+    color: var(--text-color);
+    transition: all 200ms;
+}
+
+.icon {
+    color: var(--icon-color);
+    padding: 0;
+    border-inline-end: 0px;
+    transition: all 200ms;
+}
+
+.link_root:hover {
+    --icon-color:#6E54B5;
+    --line-link-color: #6E54B5;
+    --text-color: #FFF;
+}
+
+.active_link {
+    --icon-color:#6E54B5 !important;
+    --line-link-color: #6E54B5 !important;
+    --text-color: #FFF !important;
+}
+
+.line_link {
+    height: 2px;
+    width: 100%;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    background-color: var(--line-link-color);
+    transition: all 200ms;
+}
+
+.header {
+    background-color: #0C0C0C;
+}

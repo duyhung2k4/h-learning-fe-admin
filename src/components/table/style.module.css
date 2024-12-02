@@ -1,0 +1,5 @@
+.root {
+    & :global(.mantine-TextInput-root) {
+        border: 0px !important;
+    }
+}
