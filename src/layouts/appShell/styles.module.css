@@ -35,10 +35,11 @@
 }
 
 .nav {
-    width: 300px;
     height: 100%;
     background-color: #0C0C0C;
     justify-content: space-between !important;
+    position: relative;
+    transition: all 200ms;
 }
 
 .links {
@@ -52,16 +53,10 @@
 }
 
 .link {
+    flex: 9;
     cursor: pointer;
     color: var(--text-color);
-    flex-grow: 1;
     transition: all 200ms;
-}
-
-.group_text {
-    background-color: var(--color-hight-light);
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
 }
 
 .line_link {
@@ -71,6 +66,11 @@
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
 }
+
+.group_text {
+    background-color: var(--color-hight-light);
+}
+
 
 .text_link {
     flex: 9;

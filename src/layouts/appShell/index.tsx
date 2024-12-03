@@ -1,17 +1,21 @@
-import React, { Suspense, useMemo } from "react";
+import React, { Suspense, useEffect, useMemo, useState } from "react";
 import Cookies from "js-cookie";
 
 import { useNavigate, useOutlet } from "react-router";
-import { Avatar, Box, Button, Group, LoadingOverlay, Stack, Text } from '@mantine/core';
+import { ActionIcon, Avatar, Box, Group, LoadingOverlay, Stack, Text } from '@mantine/core';
 import { ObjectRouter, ROUTER } from "@/constants/router";
 import { TOKEN_TYPE } from "@/model/variable";
+import { IconBrandDatabricks, IconSquareArrowLeftFilled, IconSquareArrowRightFilled } from "@tabler/icons-react";
+import { SIZE } from "@/constants/size";
 
 import classes from "./styles.module.css";
-import { IconLayoutDashboard } from "@tabler/icons-react";
 
 
 
 const AppshellLayout: React.FC = () => {
+    const [show, setShow] = useState<boolean>(true);
+    const [showText, setShowText] = useState<boolean>(true);
+
     const links: ObjectRouter[] = useMemo(() => {
         let list: ObjectRouter[] = [
             ROUTER.HOME,
@@ -38,14 +42,44 @@ const AppshellLayout: React.FC = () => {
         navigation(ROUTER.HOME.href);
     }
 
+    useEffect(() => {
+        if (!show) {
+            setShowText(false);
+            return;
+        };
+
+        const showTextLinkTimeOut = setTimeout(() => {
+            setShowText(true);
+        }, 200);
+
+        return () => {
+            clearTimeout(showTextLinkTimeOut);
+        }
+    }, [show]);
+
+    const BoxShow: React.FC<{ children: React.ReactNode }> = (props) => {
+        return (
+            <>
+                {
+                    show &&
+                    (showText &&
+                        props.children)
+                }
+            </>
+        )
+    }
+
 
 
     return (
         <Suspense fallback={<LoadingOverlay visible overlayProps={{ radius: "sm", blur: 2 }} />}>
             <Group h={"100vh"} w={"100%"} gap={0}>
-                <Stack className={classes.nav} gap={0}>
+                <Stack className={classes.nav} w={show ? SIZE.w_navbar : SIZE.w_navbar_mini} gap={0}>
                     <Group p={16} pb={36}>
-                        <Text><span className={classes.title_app}>H</span>Learning</Text>
+                        <IconBrandDatabricks />
+                        <BoxShow>
+                            <Text><span className={classes.title_app}>H</span>Learning</Text>
+                        </BoxShow>
                     </Group>
                     <Stack className={classes.links}>
 
@@ -55,20 +89,29 @@ const AppshellLayout: React.FC = () => {
                                 const active = l.href === pathname;
 
                                 return (
-                                    <Group 
-                                        className={`${classes.link_root} ${active ? classes.active_link : null}`} 
+                                    <Group
+                                        key={i}
+                                        className={`${classes.link_root} ${active ? classes.active_link : null}`}
                                         gap={0} w={"100%"}
                                         onClick={() => handleNavigation(l.href)}
                                     >
                                         <Box className={classes.line_link}></Box>
                                         <Group className={classes.link} gap={0}>
-                                            <Group w={"90%"} gap={0} className={classes.group_text}>
+                                            <Group
+                                                w={show ? "90%" : "100%"}
+                                                gap={0}
+                                                className={classes.group_text}
+                                                style={{
+                                                    borderTopRightRadius: show ? "8px" : "0px",
+                                                    borderBottomRightRadius: show ? "8px" : "0px",
+                                                }}
+                                            >
                                                 <Group justify="center" align="center" style={{ flex: 1 }} pt={8} pb={8} pl={16} pr={16}>
-                                                    {Icon && <Icon/>}
+                                                    {Icon && <Icon />}
                                                 </Group>
-                                                <Box className={classes.text_link}>
-                                                    {l.name}
-                                                </Box>
+                                                <BoxShow>
+                                                    <Box className={classes.text_link}>{l.name}</Box>
+                                                </BoxShow>
                                             </Group>
                                         </Group>
                                     </Group>
@@ -78,10 +121,32 @@ const AppshellLayout: React.FC = () => {
 
 
                     </Stack>
-                    <Group p={16} justify="start" align="center">
+                    <Group p={16} justify={show ? "start" : "center"} align="center">
                         <Avatar radius="xl" />
-                        <Text>Admin</Text>
+                        <BoxShow>
+                            <Text>Admin</Text>
+                        </BoxShow>
                     </Group>
+
+                    <ActionIcon
+                        style={{
+                            position: "absolute",
+                            cursor: "pointer",
+                            bottom: "60px",
+                            right: "-29px",
+                            padding: "0",
+                            color: "#FFF"
+                        }}
+                        variant="subtle"
+                        size={32}
+                        onClick={() => setShow(!show)}
+                    >
+                        {show ?
+                            <IconSquareArrowLeftFilled size={32} />
+                            :
+                            <IconSquareArrowRightFilled size={32} />
+                        }
+                    </ActionIcon>
                 </Stack>
                 <Group h={"100%"} justify="start" align="start">{outlet}</Group>
             </Group>
