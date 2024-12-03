@@ -1,8 +1,8 @@
 import { 
     Icon,
-    IconBrandDatabricks,
-    IconCertificate,
+    IconAlignBoxLeftBottom,
     IconHome,
+    IconLayoutDashboard,
     IconProps,
 } from "@tabler/icons-react"
 
@@ -15,43 +15,31 @@ export type ObjectRouter = {
 
 export type FieldRouter =
     | "LOGIN"
-    | "REGISTER"
-    | "ACCEPT_CODE"
     | "HOME"
-    | "FIND_COURSE"
-    | "MY_COURSE"
+    | "DASH_BOARD"
+    | "MANAGER_COURSE"
 export const ROUTER: Record<FieldRouter, ObjectRouter> = {
     LOGIN: {
         href: "/login",
         type: "public",
         name: "Đăng nhập",
     },
-    REGISTER: {
-        href: "/register",
-        type: "public",
-        name: "Đăng kí",
-    },
-    ACCEPT_CODE: {
-        href: "/accept-code",
-        type: "public",
-        name: "Xác nhận otp",
-    },
     HOME: {
         href: "/",
-        type: "public",
+        type: "protected",
         name: "Trang chủ",
         icon: IconHome
     },
-    FIND_COURSE: {
-        href: "/find-course",
-        type: "public",
-        name: "Khóa học",
-        icon: IconBrandDatabricks,
-    },
-    MY_COURSE: {
-        href: "/my-course",
+    DASH_BOARD: {
+        href: "/dashboard",
         type: "protected",
-        name: "Khóa học của tôi",
-        icon: IconCertificate,
-    }
+        name: "Thống kê",
+        icon: IconLayoutDashboard
+    },
+    MANAGER_COURSE: {
+        href: "/manage-course",
+        type: "protected",
+        name: "Quản lí khóa học",
+        icon: IconAlignBoxLeftBottom
+    },
 }

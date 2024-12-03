@@ -19,8 +19,8 @@ const AppshellLayout: React.FC = () => {
     const links: ObjectRouter[] = useMemo(() => {
         let list: ObjectRouter[] = [
             ROUTER.HOME,
-            ROUTER.FIND_COURSE,
-            ROUTER.MY_COURSE,
+            ROUTER.DASH_BOARD,
+            ROUTER.MANAGER_COURSE,
         ];
 
         return list;
@@ -148,7 +148,15 @@ const AppshellLayout: React.FC = () => {
                         }
                     </ActionIcon>
                 </Stack>
-                <Group h={"100%"} justify="start" align="start">{outlet}</Group>
+                <Group
+                    h={"100%"}
+                    justify="start"
+                    align="start"
+                    flex={1}
+                    p={16}
+                >
+                    {outlet}
+                </Group>
             </Group>
         </Suspense>
     )

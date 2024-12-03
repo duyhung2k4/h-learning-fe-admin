@@ -4,7 +4,12 @@ import ProtectedLayout from "@/layouts/protected";
 import AuthLayout from "@/layouts/auth";
 
 import { Routes, Route } from "react-router-dom";
-import { PageAcceptCode, PageFindCourse, PageHome, PageLogin, PageMyCourse } from "./lazy";
+import { 
+    PageDashboard, 
+    PageHome, 
+    PageLogin, 
+    PageManagerCourse,
+} from "./lazy";
 import { ROUTER } from "@/constants/router";
 
 
@@ -17,13 +22,12 @@ const AppRouter: React.FC = () => {
         <Routes>
             <Route element={<ProtectedLayout />}>
                 <Route element={<AuthLayout />}>
-                    <Route path={ROUTER.ACCEPT_CODE.href} element={<PageAcceptCode />} />
                     <Route path={ROUTER.LOGIN.href} element={<PageLogin />} />
                 </Route>
                 <Route element={<AppshellLayout />}>
                     <Route path={ROUTER.HOME.href} element={<PageHome />} />
-                    <Route path={ROUTER.FIND_COURSE.href} element={<PageFindCourse />} />
-                    <Route path={ROUTER.MY_COURSE.href} element={<PageMyCourse />} />
+                    <Route path={ROUTER.DASH_BOARD.href} element={<PageDashboard />} />
+                    <Route path={ROUTER.MANAGER_COURSE.href} element={<PageManagerCourse />} />
                 </Route>
             </Route>
         </Routes>
