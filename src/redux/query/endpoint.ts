@@ -68,6 +68,11 @@ export const endPoint = {
         }),
     },
     course: {
+        getAll: () => ({
+            url: `api/v1/protected/course/get-all`,
+            method: "GET",
+            headers: HEADER.protectedHeader(),
+        }),
         create: () => ({
             url: `api/v1/protected/course/create`,
             method: "POST",

@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import HeaderPage from "@/components/header_page";
 
-import { ActionIcon, Button, Divider, Group, Stack, Text, TextInput, Tooltip } from "@mantine/core";
+import { ActionIcon, Button, Divider, Grid, Group, Stack, Text, TextInput, Tooltip } from "@mantine/core";
 import { IconAdjustments, IconPlus, IconSearch } from "@tabler/icons-react";
 import { useNavigate } from "react-router";
 import { ROUTER } from "@/constants/router";
+import { useGetAllCourseQuery } from "@/redux/api/course";
 
 import textStyles from "@/styles/text.module.css";
+import CardCourse from "./card";
 
 
 
@@ -14,9 +16,24 @@ const ManagerCourse: React.FC = () => {
 
     const navigation = useNavigate();
 
+    const {
+        data: courseData,
+        refetch,
+    } = useGetAllCourseQuery(null);
+
     const handleCreateCourse = () => {
         navigation(ROUTER.CREATE_COURSE.href);
     }
+
+    const courses = useMemo(() => {
+        return courseData?.data || [];
+    }, [courseData]);
+
+    useEffect(() => {
+        refetch();
+    }, []);
+
+    console.log(courses);
 
 
 
@@ -53,6 +70,18 @@ const ManagerCourse: React.FC = () => {
                     </Group>
                 </Group>
             </HeaderPage>
+
+            <Stack p={16}>
+                <Grid>
+                    {
+                        courses.map(c =>
+                            <Grid.Col span={{ xs: 6 , md: 4, lg: 3 }} key={c.ID}>
+                                <CardCourse {...c} />
+                            </Grid.Col>
+                        )
+                    }
+                </Grid>
+            </Stack>
         </Stack>
     )
 }

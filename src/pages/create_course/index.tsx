@@ -2,22 +2,23 @@ import React, { createContext } from "react";
 import HeaderPage from "@/components/header_page";
 
 import { Setting } from "./setting";
-import { Button, Grid, Group, Stack, Text } from "@mantine/core";
+import { Button, Grid, Group, Stack, Text, Tooltip } from "@mantine/core";
 import { IconSquareXFilled } from "@tabler/icons-react";
 import { Detail } from "./detail";
 import { useForm, UseFormReturnType } from "@mantine/form";
-
-import textClasses from "@/styles/text.module.css";
 import { CreateCourseReq } from "@/dto/request/course";
 import { useCreateCourseMutation } from "@/redux/api/course";
 import { useNavigate } from "react-router";
 import { useNotification } from "@/hook/notification.hook";
 import { ROUTER } from "@/constants/router";
 
+import textClasses from "@/styles/text.module.css";
+
 
 
 type InfoCourse = {
     name: string
+    introduce: string
     description: string
     multiLogin: boolean
     value: number
@@ -35,6 +36,7 @@ const CreateCourse: React.FC = () => {
             name: "",
             value: 0,
             description: "",
+            introduce: "",
             thumnail: null,
             multiLogin: true,
         },
@@ -53,6 +55,7 @@ const CreateCourse: React.FC = () => {
                 description: values.description,
                 multiLogin: values.multiLogin,
                 value: values.value,
+                introduce: values.introduce,
             },
             thumnail: values.thumnail,
         }
@@ -81,11 +84,18 @@ const CreateCourse: React.FC = () => {
                     <HeaderPage
                         style={{
                             backgroundColor: "#151517",
-                            borderBottom: "1px solid #969696"
+                            borderBottom: "1px solid #969696",
                         }}
                     >
                         <Group w={"100%"} justify="space-between">
-                            <IconSquareXFilled style={{ cursor: "pointer" }} />
+                            <Tooltip label="Hủy">
+                                <IconSquareXFilled 
+                                    style={{ cursor: "pointer" }} 
+                                    onClick={() => {
+                                        navigation(ROUTER.MANAGER_COURSE.href);
+                                    }}
+                                />
+                            </Tooltip>
                             <Text className={textClasses.title_page}>Thêm mới khóa học</Text>
                             <Button
                                 type="submit"

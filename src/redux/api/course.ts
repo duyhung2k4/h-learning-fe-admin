@@ -21,9 +21,15 @@ export const courseApi = createApi({
                 })
             },
         }),
+        getAllCourse: builder.query<QueryReturnType<CourseModel[]>, null>({
+            query: () => ({
+                ...endPoint.course.getAll(),
+            }),
+        })
     })
 });
 
 export const {
     useCreateCourseMutation,
+    useGetAllCourseQuery,
 } = courseApi;

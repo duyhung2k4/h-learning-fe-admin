@@ -1,7 +1,8 @@
+import authSlice from "./slice/authSlice";
+
 import { combineReducers } from "@reduxjs/toolkit";
 import { queryApi } from "./api/query";
 import { authApi } from "./api/auth";
-import authSlice from "./slice/authSlice";
 import { courseApi } from "./api/course";
 
 

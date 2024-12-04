@@ -4,6 +4,7 @@ export type CreateCourseReq = {
         description: string
         multiLogin: boolean
         value: number
+        introduce: string
     }
     thumnail: File
 }

@@ -49,12 +49,42 @@ export const Setting: React.FC = () => {
                         style={{
                             flex: 1
                         }}
+                        autosize
                         styles={{
                             input: {
                                 height: 60
                             }
                         }}
                         {...formInfoCourse.getInputProps("name")}
+                        variant="unstyled"
+                    />
+                </Group>
+
+                <Group
+                    style={{
+                        alignItems: "start",
+                        justifyContent: "start",
+                        padding: 8,
+                        border: "2px solid #3B5BDB",
+                        borderRadius: 8
+                    }}
+                    className={classes.info_config}
+                    gap={6}
+                >
+                    <IconLabel size={30} />
+                    <Textarea
+                        label="Giới thiệu khóa học"
+                        placeholder="Ví dụ: Khóa học này..."
+                        style={{
+                            flex: 1
+                        }}
+                        autosize
+                        styles={{
+                            input: {
+                                height: "auto"
+                            }
+                        }}
+                        {...formInfoCourse.getInputProps("introduce")}
                         variant="unstyled"
                     />
                 </Group>
