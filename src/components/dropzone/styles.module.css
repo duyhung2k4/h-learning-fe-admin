@@ -1,0 +1,22 @@
+.inner {
+    border: 1px dashed #969696;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.inner:hover {
+    background-color: #2E2E2E;
+}
+
+.thumnails {
+    max-height: 100px;
+    max-width: 100%;
+    width: auto;
+}
+
+.thumnail {
+    max-height: 300px;
+    max-width: 100%;
+    width: auto;
+}

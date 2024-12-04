@@ -1,0 +1,28 @@
+.course_setting {
+    min-height: calc(100vh - 45px - 16px * 2);
+    border-left: 1px solid #969696;
+    height: 100%;
+}
+
+.title_course_setting {
+    font-size: 18px;
+    font-weight: 500;
+    color: #FFF;
+}
+
+.title_course_detail {
+    font-size: 18px;
+    font-weight: 500;
+    color: #FFF;
+}
+
+.info_config {
+    & :global(.mantine-Input-input) {
+        background-color: #151517 !important;
+        border-bottom: 1px solid #969696 !important;
+        border-radius: 0px !important;
+    }
+    & :global(.mantine-Input-input:focus) {
+        outline: 0px !important;
+    }
+}

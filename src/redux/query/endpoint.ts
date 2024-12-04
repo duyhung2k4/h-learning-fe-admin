@@ -21,6 +21,13 @@ export const HEADER = {
             Authorization: `Bearer ${token}`,
         }
     },
+    protectedMutipartHeader: () => {
+        const token = Cookies.get(TOKEN_TYPE.ACCESS_TOKEN);
+        return {
+            accept: 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+        }
+    },
     codeHeader: () => {
         const token = Cookies.get(TOKEN_TYPE.CODE_TOKEN);
         return {
@@ -37,11 +44,6 @@ export const endPoint = {
             method: "POST",
             headers: HEADER.defaultHeader(),
         }),
-        refreshToken: () => ({
-            url: "api/v1/protected/refresh-token",
-            method: "POST",
-            headers: HEADER.refreshTokenHeader(),
-        }),
         register: () => ({
             url: "api/v1/auth/register",
             method: "POST",
@@ -52,6 +54,11 @@ export const endPoint = {
             method: "POST",
             headers: HEADER.codeHeader(),
         }),
+        refreshToken: () => ({
+            url: "api/v1/protected/auth/refresh-token",
+            method: "POST",
+            headers: HEADER.refreshTokenHeader(),
+        }),
     },
     query: {
         query: (model: string) => ({
@@ -60,4 +67,11 @@ export const endPoint = {
             headers: HEADER.protectedHeader(),
         }),
     },
+    course: {
+        create: () => ({
+            url: `api/v1/protected/course/create`,
+            method: "POST",
+            headers: HEADER.protectedMutipartHeader(),
+        })
+    }
 }

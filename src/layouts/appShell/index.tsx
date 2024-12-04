@@ -135,7 +135,9 @@ const AppshellLayout: React.FC = () => {
                             bottom: "60px",
                             right: "-29px",
                             padding: "0",
-                            color: "#FFF"
+                            color: "#FFF",
+                            zIndex: 10,
+                            backgroundColor: "#151517"
                         }}
                         variant="subtle"
                         size={32}
@@ -149,11 +151,16 @@ const AppshellLayout: React.FC = () => {
                     </ActionIcon>
                 </Stack>
                 <Group
-                    h={"100%"}
-                    justify="start"
-                    align="start"
-                    flex={1}
-                    p={16}
+                    style={{
+                        maxHeight: "100vh",
+                        height: "100%",
+                        justifyContent: "start",
+                        alignItems: "start",
+                        flex: 1,
+                        padding: 0,
+                        overflow: "scroll",
+                        overflowX: "hidden"
+                    }}
                 >
                     {outlet}
                 </Group>

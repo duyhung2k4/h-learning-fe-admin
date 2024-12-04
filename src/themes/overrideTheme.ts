@@ -62,6 +62,13 @@ const themeOverride = createTheme({
                     cursor: "pointer"
                 } as CSSProperties
             }
+        },
+        Switch: {
+            styles: {
+                track: {
+                    cursor: "pointer"
+                } as CSSProperties
+            }
         }
     },
     primaryColor: "violet",

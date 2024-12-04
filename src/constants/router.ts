@@ -18,6 +18,7 @@ export type FieldRouter =
     | "HOME"
     | "DASH_BOARD"
     | "MANAGER_COURSE"
+    | "CREATE_COURSE"
 export const ROUTER: Record<FieldRouter, ObjectRouter> = {
     LOGIN: {
         href: "/login",
@@ -41,5 +42,10 @@ export const ROUTER: Record<FieldRouter, ObjectRouter> = {
         type: "protected",
         name: "Quản lí khóa học",
         icon: IconAlignBoxLeftBottom
+    },
+    CREATE_COURSE: {
+        href: "/create-course",
+        type: "protected",
+        name: "Thêm mới khóa học",
     },
 }

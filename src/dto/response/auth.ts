@@ -1,9 +1,10 @@
+import { ProfileModel } from "@/model/profile"
 
 
 export type AuthResponse = {
     accessToken: string
     refreshToken: string
-    profile: any
+    profile: ProfileModel
 }
 
 export type RegisterResponse = {

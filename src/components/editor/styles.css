@@ -1,0 +1,23 @@
+.mantine-RichTextEditor-root {
+    background-color: #151517;
+    color: #ffffff;
+}
+
+.mantine-RichTextEditor-content {
+    background-color: #151517;
+    color: #ffffff;
+}
+
+.mantine-RichTextEditor-toolbar,
+.mantine-RichTextEditor-control,
+.mantine-RichTextEditor-controlsGroup {
+    background-color: #151517;
+}
+
+.mantine-RichTextEditor-control:hover {
+    background-color: #969696;
+}
+
+a {
+    cursor: pointer;
+}

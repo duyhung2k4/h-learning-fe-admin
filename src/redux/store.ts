@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import { rootReducer } from "./reducer";
 import { queryApi } from "./api/query";
 import { authApi } from "./api/auth";
+import { courseApi } from "./api/course";
 
 
 
 const middleware = [
     authApi.middleware,
     queryApi.middleware,
+    courseApi.middleware,
 ]
 
 const store = configureStore({

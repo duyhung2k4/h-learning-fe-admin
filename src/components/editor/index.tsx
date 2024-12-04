@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Highlight from "@tiptap/extension-link";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
@@ -10,13 +10,16 @@ import { RichTextEditor, Link } from '@mantine/tiptap';
 import { useEditor } from '@tiptap/react';
 
 import '@mantine/tiptap/styles.css';
+import "./styles.css";
+
 
 
 export type EditorCustomProps = {
     defaultContent?: string
-    onChange?: (value: string) => void
+    onChange: (value: string) => void
 }
 const EditorCustom: React.FC<EditorCustomProps> = (props) => {
+
     const editor = useEditor({
         extensions: [
             StarterKit,
@@ -28,16 +31,13 @@ const EditorCustom: React.FC<EditorCustomProps> = (props) => {
             TextAlign.configure({ types: ['heading', 'paragraph'] }),
         ],
         content: props.defaultContent,
+        onUpdate: ({ editor }) => {
+            const html = editor.getHTML();
+            props.onChange(html);
+        }
     });
 
-    useEffect(() => {
-        if (editor) {
-            editor.on('update', () => {
-                const html = editor.getHTML();
-                props.onChange && props.onChange(html);
-            });
-        }
-    }, [editor]);
+
 
     return (
         <RichTextEditor
