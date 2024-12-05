@@ -10,8 +10,8 @@ import classes from "./styles.module.css";
 
 export const Setting: React.FC = () => {
 
-    const { formInfoCourse } = useContext<TypeCreateCourseContext>(CreateCourseContext);
-    if(!formInfoCourse) return
+    const { formEditInfoCourse } = useContext<TypeCreateCourseContext>(CreateCourseContext);
+    if(!formEditInfoCourse) return
 
 
 
@@ -55,7 +55,7 @@ export const Setting: React.FC = () => {
                                 height: 60
                             }
                         }}
-                        {...formInfoCourse.getInputProps("name")}
+                        {...formEditInfoCourse.getInputProps("name")}
                         variant="unstyled"
                     />
                 </Group>
@@ -84,7 +84,7 @@ export const Setting: React.FC = () => {
                                 height: "auto"
                             }
                         }}
-                        {...formInfoCourse.getInputProps("introduce")}
+                        {...formEditInfoCourse.getInputProps("introduce")}
                         variant="unstyled"
                     />
                 </Group>
@@ -111,7 +111,7 @@ export const Setting: React.FC = () => {
                         styles={{
                             section: { display: "none" }
                         }}
-                        {...formInfoCourse.getInputProps("value")}
+                        {...formEditInfoCourse.getInputProps("value")}
                     />
                 </Group>
 
@@ -135,8 +135,8 @@ export const Setting: React.FC = () => {
                     </Stack>
                     <Switch 
                         color="green" 
-                        defaultChecked={formInfoCourse.values.multiLogin}
-                        {...formInfoCourse.getInputProps("multiLogin")} 
+                        defaultChecked={formEditInfoCourse.values.multiLogin}
+                        {...formEditInfoCourse.getInputProps("multiLogin")}
                     />
                 </Group>
             </Stack>

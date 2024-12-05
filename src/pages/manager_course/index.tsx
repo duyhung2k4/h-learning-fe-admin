@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import HeaderPage from "@/components/header_page";
 
-import { ActionIcon, Button, Divider, Grid, Group, Stack, Text, TextInput, Tooltip } from "@mantine/core";
+import { ActionIcon, Button, Grid, Group, Stack, Text, TextInput, Tooltip } from "@mantine/core";
 import { IconAdjustments, IconPlus, IconSearch } from "@tabler/icons-react";
 import { useNavigate } from "react-router";
 import { ROUTER } from "@/constants/router";
@@ -38,8 +38,13 @@ const ManagerCourse: React.FC = () => {
 
 
     return (
-        <Stack w={"100%"} gap={0}>
-            <HeaderPage>
+        <Stack w={"100%"} h={"100%"} gap={0}>
+            <HeaderPage
+                style={{
+                    backgroundColor: "#151517",
+                    borderBottom: "2px solid #969696",
+                }}
+            >
                 <Stack w={"100%"} align="center">
                     <Group w={"100%"} justify="space-between">
                         <Text className={textStyles.title_page}>Quản lí khóa học</Text>
@@ -50,7 +55,6 @@ const ManagerCourse: React.FC = () => {
                     </Group>
                 </Stack>
             </HeaderPage>
-            <Divider size={1} w={"100%"} />
             <HeaderPage>
                 <Group w={"100%"}>
                     <Group w={"100%"}>
@@ -71,7 +75,13 @@ const ManagerCourse: React.FC = () => {
                 </Group>
             </HeaderPage>
 
-            <Stack p={16}>
+            <Stack 
+                style={{
+                    padding: 16,
+                    flex: 1,
+                    overflowY: "scroll"
+                }}
+            >
                 <Grid>
                     {
                         courses.map(c =>

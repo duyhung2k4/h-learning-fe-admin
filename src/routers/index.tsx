@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import {
     PageCreateCourse,
     PageDashboard,
+    PageEditCourse,
     PageHome,
     PageLogin,
     PageManagerCourse,
@@ -30,6 +31,7 @@ const AppRouter: React.FC = () => {
                     <Route path={ROUTER.DASH_BOARD.href} element={<PageDashboard />} />
                     <Route path={ROUTER.MANAGER_COURSE.href} element={<PageManagerCourse />} />
                     <Route path={ROUTER.CREATE_COURSE.href} element={<PageCreateCourse />} />
+                    <Route path={`${ROUTER.EDIT_COURSE.href}/:id`} element={<PageEditCourse />} />
                 </Route>
             </Route>
         </Routes>

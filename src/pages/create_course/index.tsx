@@ -47,7 +47,7 @@ const CreateCourse: React.FC = () => {
     });
 
     const handleCreateCourse = async (values: InfoCourse) => {
-        if(!values.thumnail) return;
+        if (!values.thumnail) return;
 
         const courseData: CreateCourseReq = {
             metadata: {
@@ -62,7 +62,7 @@ const CreateCourse: React.FC = () => {
 
         const result = await post(courseData);
 
-        if("error" in result) {
+        if ("error" in result) {
             noti.error("Tạo khóa học thất bại!");
             return;
         }
@@ -79,18 +79,25 @@ const CreateCourse: React.FC = () => {
                 formInfoCourse: formInfoCourse,
             }}
         >
-            <form id="create-course" onSubmit={formInfoCourse.onSubmit(handleCreateCourse)}>
-                <Stack w={"100%"} gap={0}>
+            <form 
+                id="create-course" 
+                style={{ 
+                    height: "100%",
+                    width: "100%"
+                }} 
+                onSubmit={formInfoCourse.onSubmit(handleCreateCourse)}
+            >
+                <Stack w={"100%"} h={"100%"} gap={0}>
                     <HeaderPage
                         style={{
                             backgroundColor: "#151517",
-                            borderBottom: "1px solid #969696",
+                            borderBottom: "2px solid #969696",
                         }}
                     >
                         <Group w={"100%"} justify="space-between">
                             <Tooltip label="Hủy">
-                                <IconSquareXFilled 
-                                    style={{ cursor: "pointer" }} 
+                                <IconSquareXFilled
+                                    style={{ cursor: "pointer" }}
                                     onClick={() => {
                                         navigation(ROUTER.MANAGER_COURSE.href);
                                     }}
@@ -105,15 +112,26 @@ const CreateCourse: React.FC = () => {
                             >Xác nhận</Button>
                         </Group>
                     </HeaderPage>
-                    <Grid gutter={5}>
-                        <Grid.Col span={8}>
-                            <Detail />
-                        </Grid.Col>
+                    <Stack
+                        style={{
+                            flex: 1,
+                            overflowX: "hidden",
+                            overflowY: "scroll",
+                        }}
+                    >
+                        <Grid 
+                            gutter={5}
+                            mih={"100%"}
+                        >
+                            <Grid.Col span={{ md: 7, lg: 8 }}>
+                                <Detail />
+                            </Grid.Col>
 
-                        <Grid.Col span={4}>
-                            <Setting />
-                        </Grid.Col>
-                    </Grid>
+                            <Grid.Col span={{ md: 5, lg: 4 }}>
+                                <Setting />
+                            </Grid.Col>
+                        </Grid>
+                    </Stack>
                 </Stack>
             </form>
         </CreateCourseContext.Provider>

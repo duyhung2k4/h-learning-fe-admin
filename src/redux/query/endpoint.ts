@@ -73,9 +73,19 @@ export const endPoint = {
             method: "GET",
             headers: HEADER.protectedHeader(),
         }),
+        detail: () => ({
+            url: `api/v1/protected/course/detail`,
+            method: "GET",
+            headers: HEADER.protectedHeader(),
+        }),
         create: () => ({
             url: `api/v1/protected/course/create`,
             method: "POST",
+            headers: HEADER.protectedMutipartHeader(),
+        }),
+        update: () => ({
+            url: `api/v1/protected/course/update`,
+            method: "PUT",
             headers: HEADER.protectedMutipartHeader(),
         })
     }

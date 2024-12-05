@@ -1,17 +1,15 @@
 .course_setting {
-    min-height: calc(100vh - 45px - 16px * 2);
-    border-left: 2px solid #969696;
-    height: 100%;
+    height: auto;
 }
 
 .title_course_setting {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 500;
     color: #FFF;
 }
 
 .title_course_detail {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 500;
     color: #FFF;
 }

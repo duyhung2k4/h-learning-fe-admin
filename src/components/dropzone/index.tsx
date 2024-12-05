@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 
 import { Grid, Group, Image, Stack, Text, rem } from '@mantine/core';
 import { IconUpload, IconPhoto, IconX, IconTrash } from '@tabler/icons-react';
@@ -9,14 +9,34 @@ import classes from "./styles.module.css";
 
 export type DropzoneCustomProps = {
     dropzoneProps: Partial<DropzoneProps>
+    defaultFile?: File[]
     title?: React.ReactNode
     multiple?: boolean
     onDrop: (files: FileWithPath[]) => void
     onReject?: ((fileRejections: FileRejection[]) => void)
 }
-const DropzoneCustom: React.FC<DropzoneCustomProps> = (props) => {
+
+export type DropzoneCustomRef = {
+    changeFiles: (files: File[]) => void;
+};
+
+const DropzoneCustom = forwardRef<DropzoneCustomRef, DropzoneCustomProps>((props, ref) => {
     const [files, setFiles] = useState<File[]>([]);
 
+    const changeFiles = (files: File[]) => {
+        setFiles(files);
+    };
+
+    useImperativeHandle(ref, () => ({
+        changeFiles: changeFiles,
+    }));
+
+    useEffect(() => {
+        if(props.defaultFile) {
+            setFiles(props.defaultFile);
+        }
+    }, []);
+    
 
 
     return (
@@ -103,6 +123,6 @@ const DropzoneCustom: React.FC<DropzoneCustomProps> = (props) => {
             </Stack>
         </Dropzone>
     );
-}
+})
 
 export default DropzoneCustom;

@@ -11,6 +11,7 @@ export type ObjectRouter = {
     name?: string
     type: "public" | "protected"
     icon?: React.ForwardRefExoticComponent<IconProps & React.RefAttributes<Icon>>
+    hash?: Record<string, string>
 }
 
 export type FieldRouter =
@@ -19,6 +20,7 @@ export type FieldRouter =
     | "DASH_BOARD"
     | "MANAGER_COURSE"
     | "CREATE_COURSE"
+    | "EDIT_COURSE"
 export const ROUTER: Record<FieldRouter, ObjectRouter> = {
     LOGIN: {
         href: "/login",
@@ -47,5 +49,15 @@ export const ROUTER: Record<FieldRouter, ObjectRouter> = {
         href: "/create-course",
         type: "protected",
         name: "Thêm mới khóa học",
+    },
+    EDIT_COURSE: {
+        href: "/edit-course",
+        type: "protected",
+        name: "Chỉnh sửa khóa học",
+        hash: {
+            baseInfo: "#base-info",
+            lessions: "#lessions",
+            vouchers: "#vouchers"
+        }
     },
 }

@@ -4,10 +4,15 @@ import { Button, Card, Group, Image, Stack, Text } from "@mantine/core";
 import { CourseModel } from "@/model/course";
 
 import classes from "./style.module.css";
+import { useNavigate } from "react-router";
+import { ROUTER } from "@/constants/router";
 
 
 
 const CardCourse: React.FC<CourseModel> = (props) => {
+
+    const navigation = useNavigate();
+
     const urlThumnail = `${import.meta.env.VITE_API}/api/v1/public/file/thumnail_course/${props.thumnail}`;
 
     return (
@@ -16,6 +21,7 @@ const CardCourse: React.FC<CourseModel> = (props) => {
                 <Image
                     src={urlThumnail}
                     height={200}
+                    fit="contain"
                     alt="Norway"
                 />
             </Card.Section>
@@ -39,7 +45,11 @@ const CardCourse: React.FC<CourseModel> = (props) => {
                     </Text>
                 </Stack>
 
-                <Button fullWidth mt="md" radius="md">
+                <Button 
+                    fullWidth 
+                    mt="md"
+                    onClick={() => navigation(`${ROUTER.EDIT_COURSE.href}/${props.ID}`)}
+                >
                     Chi tiết
                 </Button>
             </Stack>

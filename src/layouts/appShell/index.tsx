@@ -158,8 +158,7 @@ const AppshellLayout: React.FC = () => {
                         alignItems: "start",
                         flex: 1,
                         padding: 0,
-                        overflow: "scroll",
-                        overflowX: "hidden"
+                        overflow: "hidden",
                     }}
                 >
                     {outlet}
