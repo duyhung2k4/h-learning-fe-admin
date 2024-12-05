@@ -5,9 +5,7 @@ import { Button, Group, Stack } from "@mantine/core";
 import { useForm, UseFormReturnType } from "@mantine/form";
 import { UpdateCourseReq } from "@/dto/request/course";
 import { useUpdateCourseMutation } from "@/redux/api/course";
-import { useNavigate } from "react-router";
 import { useNotification } from "@/hook/notification.hook";
-import { ROUTER } from "@/constants/router";
 
 import { Detail } from "./detail";
 import { EditCourseContext, TypeEditCourseContext } from "..";
@@ -30,7 +28,6 @@ const BaseInfo: React.FC = () => {
     if(!course) return;
 
     const [put, { isLoading }] = useUpdateCourseMutation();
-    const navigation = useNavigate();
     const noti = useNotification();
 
     const formEditInfoCourse = useForm<EditInfoCourse>({

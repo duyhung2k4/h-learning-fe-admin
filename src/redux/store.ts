@@ -3,6 +3,7 @@ import { rootReducer } from "./reducer";
 import { queryApi } from "./api/query";
 import { authApi } from "./api/auth";
 import { courseApi } from "./api/course";
+import { chapterApi } from "./api/chapter";
 
 
 
@@ -10,6 +11,7 @@ const middleware = [
     authApi.middleware,
     queryApi.middleware,
     courseApi.middleware,
+    chapterApi.middleware,
 ]
 
 const store = configureStore({

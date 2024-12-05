@@ -88,5 +88,22 @@ export const endPoint = {
             method: "PUT",
             headers: HEADER.protectedMutipartHeader(),
         })
+    },
+    chapter: {
+        getByCourseId: () => ({
+            url: `api/v1/protected/chapter/get-by-course`,
+            method: "GET",
+            headers: HEADER.protectedMutipartHeader(),
+        }),
+        create: () => ({
+            url: `api/v1/protected/chapter/create`,
+            method: "POST",
+            headers: HEADER.protectedMutipartHeader(),
+        }),
+        update: () => ({
+            url: `api/v1/protected/chapter/update`,
+            method: "PUT",
+            headers: HEADER.protectedMutipartHeader(),
+        })
     }
 }

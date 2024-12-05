@@ -9,7 +9,8 @@ import { Provider } from 'react-redux'
 import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from '@mantine/notifications';
 
-import './index.css'
+import './index.css';
+import "@/styles/modal.css";
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 

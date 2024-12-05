@@ -10,6 +10,8 @@ import { IconSquareXFilled } from "@tabler/icons-react";
 import { useNavigate, useParams } from "react-router";
 import { useDetailCourseQuery } from "@/redux/api/course";
 import { CourseModel } from "@/model/course";
+import { useGetChapterByCourseIdQuery } from "@/redux/api/chapter";
+import { ChapterModel } from "@/model/chapter";
 
 import textClasses from "@/styles/text.module.css";
 import tabsClasses from "@/styles/tabs.module.css";
@@ -20,19 +22,31 @@ const EditCourse: React.FC = () => {
 
     const navigation = useNavigate();
 
-    const [hash, setHash] = useState<string>(ROUTER.EDIT_COURSE.hash?.baseInfo || "");
+    const [hash, setHash] = useState<string>(
+        window.location.hash ||
+        ROUTER.EDIT_COURSE.hash?.baseInfo || ""
+    );
 
     const { id } = useParams();
     if (!id) return;
 
     const {
-        data,
+        data: dataCourse,
         refetch: refetchCourse,
     } = useDetailCourseQuery(Number(id));
 
+    const {
+        data: dataChapter,
+        refetch: refetchChapters
+    } = useGetChapterByCourseIdQuery(Number(id));
+
+
     const course = useMemo(() => {
-        return data?.data
-    }, [data]);
+        return dataCourse?.data
+    }, [dataCourse]);
+    const chapters = useMemo(() => {
+        return dataChapter?.data || [];
+    }, [dataChapter]);
     
     
     useEffect(() => {
@@ -41,6 +55,7 @@ const EditCourse: React.FC = () => {
     
     useEffect(() => {
         refetchCourse();
+        refetchChapters();
         
         const curHash = window.location.hash;
         if (curHash === "") {
@@ -59,7 +74,9 @@ const EditCourse: React.FC = () => {
         <EditCourseContext.Provider
             value={{
                 course,
+                chapters,
                 refetchCourse,
+                refetchChapters,
             }}
         >
             <Stack w={"100%"} h={"100%"} gap={0} p={0}>
@@ -90,6 +107,7 @@ const EditCourse: React.FC = () => {
                         onChange={e => setHash(e || ROUTER.EDIT_COURSE.hash?.baseInfo || "")}
                         p={0}
                         pl={16}
+                        h={"100%"}
                         mah={"100%"}
                         className={tabsClasses.root}
                         styles={{
@@ -130,12 +148,16 @@ const EditCourse: React.FC = () => {
 
 export type TypeEditCourseContext = {
     course: CourseModel | null
+    chapters: ChapterModel[]
     refetchCourse: () => void
+    refetchChapters: () => void
 }
 
 export const EditCourseContext = createContext<TypeEditCourseContext>({
     course: null,
+    chapters: [],
     refetchCourse: () => {},
+    refetchChapters: () => {},
 })
 
 export default EditCourse;
