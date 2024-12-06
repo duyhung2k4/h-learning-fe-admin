@@ -23,15 +23,16 @@
     transition: 200ms all;
 }
 
+.item_chapter:hover {
+    border: 2px solid #8E04C3;
+    background-color: #211428;
+}
+
 .item_chapter_active {
     border: 2px solid #8E04C3;
     background-color: #211428;
 }
 
-.item_chapter:hover {
-    border: 2px solid #8E04C3;
-    background-color: #211428;
-}
 
 .item_chapter_show_lession {
     overflow: hidden;
@@ -43,4 +44,17 @@
 .list_lession {
     overflow: hidden;
     transition: all 200ms;
+}
+
+.item_lession {
+    padding: 8px;
+    border-radius: 8px;
+    width: 100%;
+    justify-content: start;
+    align-items: center;
+    gap: 4;
+}
+
+.item_lession:hover {
+    background-color: #3A0F44;
 }

@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 
 import { Group, Stack, Text, Tooltip } from "@mantine/core";
-import { IconCaretDownFilled, IconEdit, IconPlus, IconTrash } from "@tabler/icons-react";
+import { IconCaretDownFilled, IconEdit, IconNotes, IconPlus, IconTrash } from "@tabler/icons-react";
 import { ChapterModel } from "@/model/chapter";
 import { LessionContext, TypeLessionContext } from ".";
+import { useNavigate } from "react-router";
 
 import classes from "./styles.module.css";
 import textClasses from "@/styles/text.module.css";
+import { ROUTER } from "@/constants/router";
 
 
 
@@ -15,14 +17,36 @@ const ItemChapter: React.FC<ChapterModel> = (props) => {
     const refShowLession = useRef<HTMLDivElement>(null);
     const refLessions = useRef<HTMLDivElement>(null);
 
-    const { modelCreateLessionRef, setCurChapter } = useContext<TypeLessionContext>(LessionContext);
+    const navigation = useNavigate();
+
+    const {
+        modalCreateLessionRef,
+        modalUpdateChapterRef,
+        modalDeleteChapterRef,
+        setCurChapter,
+    } = useContext<TypeLessionContext>(LessionContext);
 
     const [showAction, setShowAction] = useState<boolean>(false);
     const [showLessions, setShowLessions] = useState<boolean>(false);
 
-    const openModelCreateLession = () => {
+    const openModalCreateLession = () => {
         setCurChapter(props);
-        modelCreateLessionRef?.current?.changeStatusModal(true);
+        modalCreateLessionRef?.current?.changeStatusModal(true);
+    }
+
+    const openModalUpdateChapter = () => {
+        setCurChapter(props);
+        modalUpdateChapterRef?.current?.changeStatusModal(true);
+    }
+
+    const openModalDeleteChapter = () => {
+        setCurChapter(props);
+        modalDeleteChapterRef?.current?.changeStatusModal(true);
+    }
+
+    const gotoEditLession = (lessionId: number) => {
+        const url = ROUTER.EDIT_LESSION.href.replace(":id", `${lessionId}`);
+        navigation(url);
     }
 
     useEffect(() => {
@@ -64,10 +88,10 @@ const ItemChapter: React.FC<ChapterModel> = (props) => {
                 {showAction &&
                     <Group gap={8}>
                         <Tooltip label="Chỉnh sửa">
-                            <IconEdit />
+                            <IconEdit onClick={openModalUpdateChapter} />
                         </Tooltip>
                         <Tooltip label="Xóa bỏ">
-                            <IconTrash />
+                            <IconTrash onClick={openModalDeleteChapter} />
                         </Tooltip>
                     </Group>
                 }
@@ -81,6 +105,24 @@ const ItemChapter: React.FC<ChapterModel> = (props) => {
                     maxHeight: showLessions ? refLessions.current?.scrollHeight : 0,
                 }}
             >
+                <Stack gap={4}>
+                    {
+                        props.lessions.map(l =>
+                            <Group
+                                key={l.ID}
+                                className={classes.item_lession}
+                                onClick={() => gotoEditLession(l.ID)}
+                            >
+                                <IconNotes />
+                                <Text
+                                    flex={1}
+                                    maw={"100%"}
+                                    className={textClasses.limit_1_line}
+                                >{l.name}</Text>
+                            </Group>
+                        )
+                    }
+                </Stack>
                 <Group
                     justify="center"
                     gap={4}
@@ -89,7 +131,7 @@ const ItemChapter: React.FC<ChapterModel> = (props) => {
                         borderRadius: 8,
                         cursor: "pointer",
                     }}
-                    onClick={openModelCreateLession}
+                    onClick={openModalCreateLession}
                 >
                     <IconPlus size={24} />
                     <Text fw={600} c={"#FFF"}>Thêm mới bài học</Text>
@@ -100,10 +142,10 @@ const ItemChapter: React.FC<ChapterModel> = (props) => {
                 ref={refShowLession}
                 className={`${classes.item_chapter_show_lession}`}
                 style={{
-                    maxHeight: 
-                        showAction ? 
-                        refShowLession.current?.scrollHeight : 
-                        (showLessions ? refShowLession.current?.scrollHeight : 0),
+                    maxHeight:
+                        showAction ?
+                            refShowLession.current?.scrollHeight :
+                            (showLessions ? refShowLession.current?.scrollHeight : 0),
                 }}
             >
                 <Tooltip label="Mở rộng">

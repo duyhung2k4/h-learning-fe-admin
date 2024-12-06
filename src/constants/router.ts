@@ -21,6 +21,7 @@ export type FieldRouter =
     | "MANAGER_COURSE"
     | "CREATE_COURSE"
     | "EDIT_COURSE"
+    | "EDIT_LESSION"
 export const ROUTER: Record<FieldRouter, ObjectRouter> = {
     LOGIN: {
         href: "/login",
@@ -51,7 +52,7 @@ export const ROUTER: Record<FieldRouter, ObjectRouter> = {
         name: "Thêm mới khóa học",
     },
     EDIT_COURSE: {
-        href: "/edit-course",
+        href: "/edit-course/:id",
         type: "protected",
         name: "Chỉnh sửa khóa học",
         hash: {
@@ -60,4 +61,9 @@ export const ROUTER: Record<FieldRouter, ObjectRouter> = {
             vouchers: "#vouchers"
         }
     },
+    EDIT_LESSION: {
+        href: "/edit-lession/:id",
+        type: "protected",
+        name: "Chỉnh sửa bài học",
+    }
 }

@@ -3,7 +3,7 @@ import { axiosBaseQuery } from "../query/baseQuery";
 import { endPoint } from "../query/endpoint";
 import { QueryReturnType } from "@/dto/base";
 import { ChapterModel } from "@/model/chapter";
-import { CreateChapterReq, UpdateChapterReq } from "@/dto/request/chapter";
+import { CreateChapterReq, DeleteChapterReq, UpdateChapterReq } from "@/dto/request/chapter";
 
 export const chapterApi = createApi({
     reducerPath: "chapterApi",
@@ -29,6 +29,12 @@ export const chapterApi = createApi({
                 data: payload,
             })
         }),
+        deleteChapter: builder.mutation<QueryReturnType<ChapterModel>, DeleteChapterReq>({
+            query: (payload) => ({
+                ...endPoint.chapter.delete(),
+                data: payload,
+            })
+        }),
     })
 });
 
@@ -36,4 +42,5 @@ export const {
     useGetChapterByCourseIdQuery,
     useCreateChapterMutation,
     useUpdateChapterMutation,
+    useDeleteChapterMutation,
 } = chapterApi;

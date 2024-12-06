@@ -6,7 +6,11 @@ export type CreateChapterReq = {
 
 export type UpdateChapterReq = {
     id: number
-    order?: number
-    name?: string
-    description?: string
+    order: number
+    name: string
+    description: string
+}
+
+export type DeleteChapterReq = {
+    id: number
 }

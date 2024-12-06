@@ -104,6 +104,11 @@ export const endPoint = {
             url: `api/v1/protected/chapter/update`,
             method: "PUT",
             headers: HEADER.protectedMutipartHeader(),
+        }),
+        delete: () => ({
+            url: `api/v1/protected/chapter/delete`,
+            method: "DELETE",
+            headers: HEADER.protectedMutipartHeader(),
         })
     },
     lession: {

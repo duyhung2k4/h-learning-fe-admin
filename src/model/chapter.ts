@@ -1,5 +1,6 @@
 import { BaseModel } from "./base";
 import { CourseModel } from "./course";
+import { LessionModel } from "./lession";
 
 export type ChapterModel = BaseModel & {
     name: string
@@ -8,5 +9,5 @@ export type ChapterModel = BaseModel & {
     courseId: number
 
     course?: CourseModel
-    // Lessions []Lession `json:"lessions" gorm:"foreignKey:ChapterId"`
+    lessions: LessionModel[]
 }

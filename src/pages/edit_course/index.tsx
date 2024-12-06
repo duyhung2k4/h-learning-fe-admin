@@ -126,7 +126,7 @@ const EditCourse: React.FC = () => {
                                 Bài học
                             </Tabs.Tab>
                             <Tabs.Tab value={ROUTER.EDIT_COURSE.hash?.vouchers || ""}>
-                                Khuyễn mãi
+                                Khuyến mãi
                             </Tabs.Tab>
                         </Tabs.List>
 
