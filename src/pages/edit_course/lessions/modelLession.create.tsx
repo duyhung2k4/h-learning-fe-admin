@@ -1,62 +1,75 @@
 import { forwardRef, useContext, useImperativeHandle, useState } from "react";
 import { Button, Group, Modal, Stack, Textarea } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { CreateChapterReq } from "@/dto/request/chapter";
 import { EditCourseContext, TypeEditCourseContext } from "..";
-import { useCreateChapterMutation } from "@/redux/api/chapter";
 import { useNotification } from "@/hook/notification.hook";
+import { CreateLessionReq } from "@/dto/request/lession";
+import { LessionContext, TypeLessionContext } from ".";
+import { useCreateLessionMutation } from "@/redux/api/lession";
 
 
 
-export type ModalCreateChapterRefProps = {
+export type ModalCreateLessionRefProps = {
     changeStatusModal: (s: boolean) => void
 }
 
-export type ModalCreateChapterProps = {}
+export type ModalCreateLessionProps = {}
 
-const ModalCreateChapter = forwardRef<ModalCreateChapterRefProps, ModalCreateChapterProps>((_, ref) => {
+const ModalCreateLession = forwardRef<ModalCreateLessionRefProps, ModalCreateLessionProps>((_, ref) => {
 
     const { course, refetchChapters } = useContext<TypeEditCourseContext>(EditCourseContext);
+    const { curChapter, setCurChapter } = useContext<TypeLessionContext>(LessionContext);
     if (!course) return;
 
     const noti = useNotification();
 
     const [open, setOpen] = useState<boolean>(false);
 
-    const form = useForm<CreateChapterReq>({
+    const form = useForm<CreateLessionReq>({
         initialValues: {
             name: "",
             description: "",
+            chapterId: 0,
             courseId: course.ID,
         },
         validate: {
-            name: (value) => value.length === 0 ? "Chưa nhập tên chương" : null,
+            name: (value) => value.length === 0 ? "Chưa nhập tên bài học" : null,
         }
     })
 
-    const [post, { isLoading }] = useCreateChapterMutation();
+    const [post, { isLoading }] = useCreateLessionMutation();
 
-    const handleCreateChapter = async (values: CreateChapterReq) => {
+    const handleCreateChapter = async (values: CreateLessionReq) => {
         if (values.courseId === 0) {
             noti.error("Lấy ID khóa học bị lỗi");
             return;
         }
+        if (!curChapter?.ID) {
+            noti.error("Lấy ID Chương bị lỗi");
+            return;
+        }
 
-        const result = await post(values);
+        const payload: CreateLessionReq = {
+            ...values,
+            chapterId: curChapter.ID,
+        }
+
+        const result = await post(payload);
         if ("error" in result) {
-            noti.error("Tạo chương thất bại");
+            noti.error("Tạo bài học thất bại");
             return;
         };
 
         setOpen(false);
         form.reset();
-        noti.success("Tạo chương thành công");
+        noti.success("Tạo bài học thành công");
+        setCurChapter(null);
         refetchChapters();
     }
 
     const handleClose = () => {
         setOpen(false);
-        form.reset();
+        setCurChapter(null);
     }
 
     useImperativeHandle(ref, () => ({
@@ -70,20 +83,20 @@ const ModalCreateChapter = forwardRef<ModalCreateChapterRefProps, ModalCreateCha
             <Modal
                 opened={open}
                 onClose={() => setOpen(false)}
-                title="Thêm mới Chương"
+                title="Thêm mới Bài học"
             >
-                <form id="create-chapter" onSubmit={form.onSubmit(handleCreateChapter)}>
+                <form id="create-lession" onSubmit={form.onSubmit(handleCreateChapter)}>
                     <Stack gap={4}>
                         <Textarea
                             autosize
-                            label="Tên chương"
+                            label="Tên bài học"
                             placeholder="Ví dụ: Chương 1: Giới thiệu..."
                             {...form.getInputProps("name")}
                         />
                         <Textarea
                             autosize
                             label="Mô tả"
-                            placeholder="Ví dụ: Chương này giới thiệu về..."
+                            placeholder="Ví dụ: Bài này giới thiệu về..."
                             {...form.getInputProps("description")}
                         />
 
@@ -94,7 +107,7 @@ const ModalCreateChapter = forwardRef<ModalCreateChapterRefProps, ModalCreateCha
                             >Hủy</Button>
                             <Button
                                 type="submit"
-                                form="create-chapter"
+                                form="create-lession"
                                 loading={isLoading}
                                 disabled={isLoading}
                             >Xác nhận</Button>
@@ -107,4 +120,4 @@ const ModalCreateChapter = forwardRef<ModalCreateChapterRefProps, ModalCreateCha
     )
 })
 
-export default ModalCreateChapter;
+export default ModalCreateLession;

@@ -16,13 +16,31 @@
     border: 2px solid #969696;
     border-radius: 8px;
     width: 100%;
+    padding: 0px;
     justify-content: space-between;
-    padding: 16px;
     cursor: pointer;
     color: #FFF !important;
+    transition: 200ms all;
+}
+
+.item_chapter_active {
+    border: 2px solid #8E04C3;
+    background-color: #211428;
 }
 
 .item_chapter:hover {
     border: 2px solid #8E04C3;
     background-color: #211428;
+}
+
+.item_chapter_show_lession {
+    overflow: hidden;
+    transition: all 200ms;
+    width: 100%;
+    justify-content: center;
+}
+
+.list_lession {
+    overflow: hidden;
+    transition: all 200ms;
 }

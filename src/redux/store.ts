@@ -4,6 +4,7 @@ import { queryApi } from "./api/query";
 import { authApi } from "./api/auth";
 import { courseApi } from "./api/course";
 import { chapterApi } from "./api/chapter";
+import { lessionApi } from "./api/lession";
 
 
 
@@ -12,6 +13,7 @@ const middleware = [
     queryApi.middleware,
     courseApi.middleware,
     chapterApi.middleware,
+    lessionApi.middleware,
 ]
 
 const store = configureStore({
