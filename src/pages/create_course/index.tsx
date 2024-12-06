@@ -97,6 +97,7 @@ const CreateCourse: React.FC = () => {
                         <Group w={"100%"} justify="space-between">
                             <Tooltip label="Hủy">
                                 <IconSquareXFilled
+                                    size={30}
                                     style={{ cursor: "pointer" }}
                                     onClick={() => {
                                         navigation(ROUTER.MANAGER_COURSE.href);

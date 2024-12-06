@@ -48,7 +48,7 @@ const CardCourse: React.FC<CourseModel> = (props) => {
                 <Button 
                     fullWidth 
                     mt="md"
-                    onClick={() => navigation(`${ROUTER.EDIT_COURSE.href}/${props.ID}`)}
+                    onClick={() => navigation(ROUTER.EDIT_COURSE.href.replace(":id", `${props.ID}`))}
                 >
                     Chi tiết
                 </Button>

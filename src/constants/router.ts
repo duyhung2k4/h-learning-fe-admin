@@ -1,4 +1,4 @@
-import { 
+import {
     Icon,
     IconAlignBoxLeftBottom,
     IconHome,
@@ -65,5 +65,11 @@ export const ROUTER: Record<FieldRouter, ObjectRouter> = {
         href: "/edit-lession/:id",
         type: "protected",
         name: "Chỉnh sửa bài học",
+        hash: {
+            baseInfo: "#base-info",
+            description: "#description",
+            video: "#video",
+            quizz: "#quizz",
+        }
     }
 }

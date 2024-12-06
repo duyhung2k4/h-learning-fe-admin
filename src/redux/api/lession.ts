@@ -9,6 +9,14 @@ export const lessionApi = createApi({
     reducerPath: "lessionApi",
     baseQuery: axiosBaseQuery(),
     endpoints: (builder) => ({
+        getDetailLession: builder.query<QueryReturnType<LessionModel>, number>({
+            query: (payload) => ({
+                ...endPoint.lession.getDetail(),
+                params: {
+                    id: payload,
+                }
+            }),
+        }),
         getLessionByChapterId: builder.query<QueryReturnType<LessionModel[]>, number>({
             query: (payload) => ({
                 ...endPoint.lession.getByCourseId(),
@@ -33,6 +41,7 @@ export const lessionApi = createApi({
 });
 
 export const {
+    useGetDetailLessionQuery,
     useGetLessionByChapterIdQuery,
     useCreateLessionMutation,
     useUpdateLessionMutation,

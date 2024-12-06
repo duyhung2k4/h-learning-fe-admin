@@ -90,6 +90,7 @@ const EditCourse: React.FC = () => {
                         <Text className={textClasses.title_page}>Cấu hình khóa học</Text>
                         <Tooltip label="Đóng">
                             <IconSquareXFilled
+                                size={30}
                                 style={{ cursor: "pointer" }}
                                 onClick={() => navigation(ROUTER.MANAGER_COURSE.href)}
                             />

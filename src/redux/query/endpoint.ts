@@ -112,6 +112,11 @@ export const endPoint = {
         })
     },
     lession: {
+        getDetail: () => ({
+            url: `api/v1/protected/lession/detail`,
+            method: "GET",
+            headers: HEADER.protectedMutipartHeader(),
+        }),
         getByCourseId: () => ({
             url: `api/v1/protected/lession/get-by-course`,
             method: "GET",

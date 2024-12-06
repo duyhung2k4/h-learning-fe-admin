@@ -69,6 +69,9 @@ const ItemChapter: React.FC<ChapterModel> = (props) => {
             ref={ref}
             key={props.ID}
             gap={0}
+            onClick={() => {
+                if(!showLessions) setShowLessions(true);
+            }}
             className={`${classes.item_chapter} ${showLessions && classes.item_chapter_active}`}
         >
             <Group w={"100%"} p={16}>
@@ -148,7 +151,7 @@ const ItemChapter: React.FC<ChapterModel> = (props) => {
                             (showLessions ? refShowLession.current?.scrollHeight : 0),
                 }}
             >
-                <Tooltip label="Mở rộng">
+                <Tooltip label={showLessions ? "Thu gọn" : "Mở rộng"}>
                     <IconCaretDownFilled
                         style={{
                             transform: `rotate(${showLessions ? 180 : 0}deg)`
