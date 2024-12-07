@@ -67,7 +67,7 @@ export const ROUTER: Record<FieldRouter, ObjectRouter> = {
         name: "Chỉnh sửa bài học",
         hash: {
             baseInfo: "#base-info",
-            description: "#description",
+            document: "#document",
             video: "#video",
             quizz: "#quizz",
         }

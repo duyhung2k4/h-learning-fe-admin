@@ -132,5 +132,34 @@ export const endPoint = {
             method: "PUT",
             headers: HEADER.protectedMutipartHeader(),
         })
+    },
+    videoLession: {
+        detail: () => ({
+            url: `api/v1/protected/video-lession/detail`,
+            method: "GET",
+            headers: HEADER.protectedMutipartHeader(),
+        }),
+        create: () => ({
+            url: `api/v1/protected/video-lession/create`,
+            method: "POST",
+            headers: HEADER.protectedMutipartHeader(),
+        }),
+        delete: () => ({
+            url: `api/v1/protected/video-lession/delete`,
+            method: "DELETE",
+            headers: HEADER.protectedMutipartHeader(),
+        }),
+        checkVideoUpload: () => ({
+            url: `api/v1/protected/video-lession/check-video-upload`,
+            method: "POST",
+            headers: HEADER.protectedMutipartHeader(),
+        })
+    },
+    uploadVideoMp4: {
+        upload: () => ({
+            url: `api/v1/protected/video/upload`,
+            method: "POST",
+            headers: HEADER.protectedMutipartHeader(),
+        }),
     }
 }

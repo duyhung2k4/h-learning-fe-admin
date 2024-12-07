@@ -10,7 +10,7 @@ import { ROUTER } from "@/constants/router";
 import textStyles from "@/styles/text.module.css";
 import tabsClasses from "@/styles/tabs.module.css";
 import BaseInfo from "./base_info";
-import Description from "./description";
+import Document from "./document";
 import Quizz from "./quizz";
 import Video from "./video";
 
@@ -119,8 +119,8 @@ const EditLession: React.FC = () => {
                         <Tabs.Tab value={ROUTER.EDIT_LESSION.hash?.video || ""}>
                             Video
                         </Tabs.Tab>
-                        <Tabs.Tab value={ROUTER.EDIT_LESSION.hash?.description || ""}>
-                            Mô tả
+                        <Tabs.Tab value={ROUTER.EDIT_LESSION.hash?.document || ""}>
+                            Tài liệu
                         </Tabs.Tab>
                         <Tabs.Tab value={ROUTER.EDIT_LESSION.hash?.quizz || ""}>
                             Quizz
@@ -130,8 +130,8 @@ const EditLession: React.FC = () => {
                     <Tabs.Panel value={ROUTER.EDIT_LESSION.hash?.baseInfo || ""}>
                         <BaseInfo />
                     </Tabs.Panel>
-                    <Tabs.Panel value={ROUTER.EDIT_LESSION.hash?.description || ""}>
-                        <Description />
+                    <Tabs.Panel value={ROUTER.EDIT_LESSION.hash?.document || ""}>
+                        <Document />
                     </Tabs.Panel>
                     <Tabs.Panel value={ROUTER.EDIT_LESSION.hash?.video || ""}>
                         <Video />

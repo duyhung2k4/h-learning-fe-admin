@@ -12,11 +12,12 @@ export const axiosBaseQuery =
             data?: AxiosRequestConfig['data']
             params?: AxiosRequestConfig['params']
             headers?: AxiosRequestConfig['headers']
+            onUploadProgress?: AxiosRequestConfig['onUploadProgress']
         },
         unknown,
         unknown
     > =>
-        async ({ url, method, data, params, headers }) => {
+        async ({ url, method, data, params, headers, onUploadProgress }) => {
             try {
                 const result = await axios({
                     url: `${baseUrl}/${url}`,
@@ -24,6 +25,7 @@ export const axiosBaseQuery =
                     data,
                     params,
                     headers,
+                    onUploadProgress,
                 })
                 return { data: result.data }
             } catch (axiosError) {

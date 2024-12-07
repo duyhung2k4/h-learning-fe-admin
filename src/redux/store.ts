@@ -5,6 +5,8 @@ import { authApi } from "./api/auth";
 import { courseApi } from "./api/course";
 import { chapterApi } from "./api/chapter";
 import { lessionApi } from "./api/lession";
+import { videoLessionApi } from "./api/video_lession";
+import { uploadVideoMp4Api } from "./api/upload_video";
 
 
 
@@ -14,6 +16,8 @@ const middleware = [
     courseApi.middleware,
     chapterApi.middleware,
     lessionApi.middleware,
+    videoLessionApi.middleware,
+    uploadVideoMp4Api.middleware,
 ]
 
 const store = configureStore({
