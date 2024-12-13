@@ -72,7 +72,7 @@ const Video: React.FC = () => {
 
         const info: UploadVideoMp4Req = {
             metadata: {
-                lessionId: videoLession.ID,
+                lessionId: videoLession.lessionId,
                 uuid: videoLession.code,
             },
             video: video,
