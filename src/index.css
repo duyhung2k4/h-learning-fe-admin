@@ -32,3 +32,18 @@ body {
         outline: 2px solid #6E6191 !important;
     }
 }
+
+.mantine-Slider-track::before {
+  background-color: #FFF !important;
+  opacity: 0.5;
+}
+
+video::-webkit-media-controls {
+  display: none !important;
+}
+video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+video::-webkit-media-controls-play-button {
+  display: none !important;
+}

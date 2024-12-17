@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import { ActionIcon, TextInput, TextInputProps } from "@mantine/core";
+import { ActionIcon, PasswordInput, PasswordInputProps } from "@mantine/core";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 
 
-export type PasswordInputCustomProps = TextInputProps;
+export type PasswordInputCustomProps = PasswordInputProps;
 
 const PasswordInputCustom: React.FC<PasswordInputCustomProps> = (props) => {
     const [show, setShow] = useState<boolean>(false);
 
     return (
-        <TextInput
+        <PasswordInput
             {...props}
-            type={show ? "text" : "password"}
             rightSection={
                 <ActionIcon 
                     onClick={() => setShow(!show)}
