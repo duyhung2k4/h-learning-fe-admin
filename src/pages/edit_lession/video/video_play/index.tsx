@@ -5,6 +5,8 @@ import { VideoLessionModel } from '@/model/video_lession';
 import { Box, Group, Slider, Stack } from '@mantine/core';
 import { IconMaximize, IconMaximizeOff, IconPlayerPauseFilled, IconPlayerPlayFilled } from '@tabler/icons-react';
 
+import iconClass from "@/styles/icon.module.css";
+
 
 interface VideoPlayerProps {
   videoLession: VideoLessionModel;
@@ -18,10 +20,15 @@ const VideoPlayer: React.FC<VideoPlayerProps> = (props) => {
   const [isDragging, setIsDragging] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [currentTime, setCurrentTime] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(0);
+
+  const [hoveredValue, setHoveredValue] = useState<number | null>(null);
+  const [tooltipPosition, setTooltipPosition] = useState<number | null>(null);
 
   const videoSrc = useMemo(() => {
     const uuid = props.videoLession.code;
-    const quantity = '360p';
+    const quantity = '1080p';
     const filename = `${uuid}_${quantity}.m3u8`;
     return `${import.meta.env.VITE_UPLOAD_VIDEO_HLS}/api/v1/video/${uuid}/${quantity}/${filename}`;
   }, [props.videoLession]);
@@ -32,6 +39,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = (props) => {
     if (video && !isDragging) {
       const updateProgress = () => {
         if (video.duration > 0) {
+          setCurrentTime(video.currentTime);
+          setDuration(video.duration);
           setProgress((video.currentTime / video.duration) * 100);
         }
       };
@@ -93,6 +102,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = (props) => {
     }
   }, [videoSrc]);
 
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  };
+
   const handlePlayVideo = () => {
     if (videoRef.current?.paused) {
       videoRef.current?.play();
@@ -141,7 +156,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = (props) => {
           borderRadius: 8,
         }}
       >
-        
+
         <video
           ref={videoRef}
           controls={false}
@@ -176,6 +191,19 @@ const VideoPlayer: React.FC<VideoPlayerProps> = (props) => {
               onChangeEnd={handleSliderChangeEnd}
               min={0}
               max={100}
+              label={null}
+              onMouseMove={(event) => {
+                const sliderRect = event.currentTarget.getBoundingClientRect();
+                const x = event.clientX - sliderRect.left;
+                const percentage = Math.min(100, Math.max(0, (x / sliderRect.width) * 100));
+
+                setHoveredValue(percentage);
+                setTooltipPosition(x);
+              }}
+              onMouseLeave={() => {
+                setHoveredValue(null);
+                setTooltipPosition(null);
+              }}
               styles={{
                 track: { height: 6 },
                 thumb: { display: 'block', width: 10, height: 10 },
@@ -185,20 +213,42 @@ const VideoPlayer: React.FC<VideoPlayerProps> = (props) => {
             <Group justify="space-between">
               <Group justify="start">
                 {videoRef.current?.paused ? (
-                  <IconPlayerPlayFilled onClick={handlePlayVideo} />
+                  <IconPlayerPlayFilled className={iconClass.icon} onClick={handlePlayVideo} />
                 ) : (
-                  <IconPlayerPauseFilled onClick={handlePlayVideo} />
+                  <IconPlayerPauseFilled className={iconClass.icon} onClick={handlePlayVideo} />
                 )}
+                <span style={{ color: 'white', fontSize: '14px', marginLeft: '8px' }}>
+                  {formatTime(currentTime)} / {formatTime(duration)}
+                </span>
               </Group>
               <Group justify="end">
                 {isFullscreen ? (
-                  <IconMaximizeOff onClick={toggleFullscreen} />
+                  <IconMaximizeOff className={iconClass.icon} onClick={toggleFullscreen} />
                 ) : (
-                  <IconMaximize onClick={toggleFullscreen} />
+                  <IconMaximize className={iconClass.icon} onClick={toggleFullscreen} />
                 )}
               </Group>
             </Group>
           </Stack>
+
+
+          {hoveredValue !== null && tooltipPosition !== null && (
+            <Box
+              style={{
+                position: 'absolute',
+                top: -30,
+                left: tooltipPosition,
+                backgroundColor: 'black',
+                color: 'white',
+                padding: '4px 8px',
+                borderRadius: '4px',
+                fontSize: '12px',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {formatTime((hoveredValue / 100) * duration)}
+            </Box>
+          )}
         </Stack>
 
 

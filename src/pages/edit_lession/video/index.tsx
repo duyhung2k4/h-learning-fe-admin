@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo } from "react";
+import UploadVideo from "./upload_video";
+import VideoPlayer from "./video_play";
 
 import { Stack } from "@mantine/core";
 import { useDetailVideoLessionQuery } from "@/redux/api/video_lession";
 import { useParams } from "react-router";
 
-import UploadVideo from "./upload_video";
-import VideoPlayer from "./video_play";
 
 
 
@@ -36,7 +36,7 @@ const Video: React.FC = () => {
         refetch={refetch}
       />
       {
-        videoLession &&
+        videoLession?.url1080p &&
         <VideoPlayer
           videoLession={videoLession}
         />

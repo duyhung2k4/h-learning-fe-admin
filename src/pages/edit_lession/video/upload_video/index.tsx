@@ -109,7 +109,7 @@ const UploadVideo: React.FC<UploadVideoProps> = (props) => {
             loading={(loadingProcess || loadingCheck)}
           >Xác nhận</Button>
         }
-        {(props.videoLession && !video) &&
+        {(props.videoLession && !props.videoLession.url1080p && !video) &&
           <FileButton
             onChange={setVideo}
             accept="video/mp4"
