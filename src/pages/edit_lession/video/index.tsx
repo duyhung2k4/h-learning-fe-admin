@@ -36,7 +36,7 @@ const Video: React.FC = () => {
         refetch={refetch}
       />
       {
-        videoLession?.url1080p &&
+        videoLession?.url360p &&
         <VideoPlayer
           videoLession={videoLession}
         />

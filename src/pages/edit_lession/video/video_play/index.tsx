@@ -28,7 +28,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = (props) => {
 
   const videoSrc = useMemo(() => {
     const uuid = props.videoLession.code;
-    const quantity = '1080p';
+    const quantity = '360p';
     const filename = `${uuid}_${quantity}.m3u8`;
     return `${import.meta.env.VITE_UPLOAD_VIDEO_HLS}/api/v1/video/${uuid}/${quantity}/${filename}`;
   }, [props.videoLession]);
