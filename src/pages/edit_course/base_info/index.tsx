@@ -6,7 +6,6 @@ import { useForm, UseFormReturnType } from "@mantine/form";
 import { UpdateCourseReq } from "@/dto/request/course";
 import { useUpdateCourseMutation } from "@/redux/api/course";
 import { useNotification } from "@/hook/notification.hook";
-
 import { Detail } from "./detail";
 import { EditCourseContext, TypeEditCourseContext } from "..";
 import { convertUrlToFile } from "@/utils/file";
@@ -46,7 +45,7 @@ const BaseInfo: React.FC = () => {
     });
 
     const setThumnailInit = async () => {
-        const url = `${import.meta.env.VITE_API}/api/v1/public/file/thumnail_course/${course.thumnail}`;
+        const url = `${import.meta.env.VITE_API}/api/v1/file/thumnail_course/${course.thumnail}`;
         const { file, error } = await convertUrlToFile(url);
         if(error || file === null) {
             console.log(error);

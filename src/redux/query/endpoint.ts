@@ -55,109 +55,109 @@ export const endPoint = {
             headers: HEADER.codeHeader(),
         }),
         refreshToken: () => ({
-            url: "api/v1/protected/auth/refresh-token",
+            url: "api/v1/auth/refresh-token",
             method: "POST",
             headers: HEADER.refreshTokenHeader(),
         }),
     },
     query: {
         query: (model: string) => ({
-            url: `api/v1/protected/query/${model}`,
+            url: `api/v1/query/${model}`,
             method: "POST",
             headers: HEADER.protectedHeader(),
         }),
     },
     course: {
         getAll: () => ({
-            url: `api/v1/protected/course/get-all`,
+            url: `api/v1/course/get-all`,
             method: "GET",
             headers: HEADER.protectedHeader(),
         }),
         detail: () => ({
-            url: `api/v1/protected/course/detail`,
+            url: `api/v1/course/detail`,
             method: "GET",
             headers: HEADER.protectedHeader(),
         }),
         create: () => ({
-            url: `api/v1/protected/course/create`,
+            url: `api/v1/course/create`,
             method: "POST",
             headers: HEADER.protectedMutipartHeader(),
         }),
         update: () => ({
-            url: `api/v1/protected/course/update`,
+            url: `api/v1/course/update`,
             method: "PUT",
             headers: HEADER.protectedMutipartHeader(),
         })
     },
     chapter: {
         getByCourseId: () => ({
-            url: `api/v1/protected/chapter/get-by-course`,
+            url: `api/v1/chapter/get-by-course`,
             method: "GET",
             headers: HEADER.protectedMutipartHeader(),
         }),
         create: () => ({
-            url: `api/v1/protected/chapter/create`,
+            url: `api/v1/chapter/create`,
             method: "POST",
             headers: HEADER.protectedMutipartHeader(),
         }),
         update: () => ({
-            url: `api/v1/protected/chapter/update`,
+            url: `api/v1/chapter/update`,
             method: "PUT",
             headers: HEADER.protectedMutipartHeader(),
         }),
         delete: () => ({
-            url: `api/v1/protected/chapter/delete`,
+            url: `api/v1/chapter/delete`,
             method: "DELETE",
             headers: HEADER.protectedMutipartHeader(),
         })
     },
     lession: {
         getDetail: () => ({
-            url: `api/v1/protected/lession/detail`,
+            url: `api/v1/lession/detail`,
             method: "GET",
             headers: HEADER.protectedMutipartHeader(),
         }),
         getByCourseId: () => ({
-            url: `api/v1/protected/lession/get-by-course`,
+            url: `api/v1/lession/get-by-course`,
             method: "GET",
             headers: HEADER.protectedMutipartHeader(),
         }),
         create: () => ({
-            url: `api/v1/protected/lession/create`,
+            url: `api/v1/lession/create`,
             method: "POST",
             headers: HEADER.protectedMutipartHeader(),
         }),
         update: () => ({
-            url: `api/v1/protected/lession/update`,
+            url: `api/v1/lession/update`,
             method: "PUT",
             headers: HEADER.protectedMutipartHeader(),
         })
     },
     videoLession: {
         detail: () => ({
-            url: `api/v1/protected/video-lession/detail`,
+            url: `api/v1/video-lession/detail`,
             method: "GET",
             headers: HEADER.protectedMutipartHeader(),
         }),
         create: () => ({
-            url: `api/v1/protected/video-lession/create`,
+            url: `api/v1/video-lession/create`,
             method: "POST",
             headers: HEADER.protectedMutipartHeader(),
         }),
         delete: () => ({
-            url: `api/v1/protected/video-lession/delete`,
+            url: `api/v1/video-lession/delete`,
             method: "DELETE",
             headers: HEADER.protectedMutipartHeader(),
         }),
         checkVideoUpload: () => ({
-            url: `api/v1/protected/video-lession/check-video-upload`,
+            url: `api/v1/video-lession/check-video-upload`,
             method: "POST",
             headers: HEADER.protectedMutipartHeader(),
         })
     },
     uploadVideoMp4: {
         upload: () => ({
-            url: `api/v1/protected/video/upload`,
+            url: `api/v1/video/upload`,
             method: "POST",
             headers: HEADER.protectedMutipartHeader(),
         }),

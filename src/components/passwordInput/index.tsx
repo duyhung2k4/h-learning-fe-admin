@@ -11,6 +11,7 @@ const PasswordInputCustom: React.FC<PasswordInputCustomProps> = (props) => {
     return (
         <PasswordInput
             {...props}
+            type={show ? "text" : "password"}
             rightSection={
                 <ActionIcon 
                     onClick={() => setShow(!show)}

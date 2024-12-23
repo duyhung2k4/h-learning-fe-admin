@@ -13,7 +13,7 @@ const CardCourse: React.FC<CourseModel> = (props) => {
 
     const navigation = useNavigate();
 
-    const urlThumnail = `${import.meta.env.VITE_API}/api/v1/public/file/thumnail_course/${props.thumnail}`;
+    const urlThumnail = `${import.meta.env.VITE_API}/api/v1/file/thumnail_course/${props.thumnail}`;
 
     return (
         <Card shadow="sm" bg={"#0C0C0C"} h={"100%"} padding={16} radius="md">
