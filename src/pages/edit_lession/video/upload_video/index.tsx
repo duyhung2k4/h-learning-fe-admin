@@ -82,6 +82,7 @@ const UploadVideo: React.FC<UploadVideoProps> = (props) => {
 
     noti.success("Tải video thành công");
     setProgress(0);
+    props.refetch();
   }
 
 

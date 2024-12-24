@@ -26,15 +26,19 @@ const Video: React.FC = () => {
     refetch();
   }, [id]);
 
+  console.log(videoLession)
+
 
 
   return (
     <Stack w={"100%"} p={16}>
-      <UploadVideo
-        id={id}
-        videoLession={videoLession}
-        refetch={refetch}
-      />
+      {(videoLession?.status === null || !videoLession) &&
+        <UploadVideo
+          id={id}
+          videoLession={videoLession}
+          refetch={refetch}
+        />
+      }
       {
         videoLession?.url360p &&
         <VideoPlayer
