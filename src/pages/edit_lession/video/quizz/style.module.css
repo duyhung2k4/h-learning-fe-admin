@@ -1,0 +1,10 @@
+.option_create_quizz {
+  padding: 16px 0px;
+  border: 2px dashed #969696;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.option_create_quizz:hover {
+  background-color: #353535;
+}

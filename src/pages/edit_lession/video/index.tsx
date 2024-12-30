@@ -5,6 +5,7 @@ import VideoPlayer from "./video_play";
 import { Stack } from "@mantine/core";
 import { useDetailVideoLessionQuery } from "@/redux/api/video_lession";
 import { useParams } from "react-router";
+import Quizz from "./quizz";
 
 
 
@@ -44,6 +45,10 @@ const Video: React.FC = () => {
         <VideoPlayer
           videoLession={videoLession}
         />
+      }
+      {
+        videoLession?.url360p &&
+        <Quizz/>
       }
     </Stack>
   )

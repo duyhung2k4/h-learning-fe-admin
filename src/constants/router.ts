@@ -1,6 +1,7 @@
 import {
     Icon,
     IconAlignBoxLeftBottom,
+    IconBrandYoutube,
     IconHome,
     IconLayoutDashboard,
     IconProps,
@@ -22,6 +23,7 @@ export type FieldRouter =
     | "CREATE_COURSE"
     | "EDIT_COURSE"
     | "EDIT_LESSION"
+    | "LIVE_STREAM"
 export const ROUTER: Record<FieldRouter, ObjectRouter> = {
     LOGIN: {
         href: "/login",
@@ -71,5 +73,11 @@ export const ROUTER: Record<FieldRouter, ObjectRouter> = {
             video: "#video",
             quizz: "#quizz",
         }
+    },
+    LIVE_STREAM: {
+      href: "/live-stream",
+      type: "protected",
+      name: "Live stream",
+      icon: IconBrandYoutube
     }
 }

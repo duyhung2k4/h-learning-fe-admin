@@ -150,7 +150,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = (props) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         style={{
-          width: '80%',
+          width: '100%',
           position: 'relative',
           overflow: 'hidden',
           borderRadius: 8,

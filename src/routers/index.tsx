@@ -10,6 +10,7 @@ import {
     PageEditCourse,
     PageEditLession,
     PageHome,
+    PageLiveStream,
     PageLogin,
     PageManagerCourse,
 } from "./lazy";
@@ -34,6 +35,7 @@ const AppRouter: React.FC = () => {
                     <Route path={ROUTER.CREATE_COURSE.href} element={<PageCreateCourse />} />
                     <Route path={ROUTER.EDIT_COURSE.href} element={<PageEditCourse />} />
                     <Route path={ROUTER.EDIT_LESSION.href} element={<PageEditLession />} />
+                    <Route path={ROUTER.LIVE_STREAM.href} element={<PageLiveStream />} />
                 </Route>
             </Route>
         </Routes>

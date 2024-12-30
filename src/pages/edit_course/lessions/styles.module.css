@@ -1,60 +1,60 @@
 .add_chapter {
-    width: 100%;
-    gap: 4;
-    padding: 24px 0px;
-    justify-content: center;
-    border: 2px dashed #969696;
-    border-radius: 8px;
-    cursor: pointer;
+  width: 100%;
+  gap: 4;
+  padding: 24px 0px;
+  justify-content: center;
+  border: 2px dashed #969696;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .add_chapter:hover {
-    background-color: #353535;
+  background-color: #353535;
 }
 
 .item_chapter {
-    border: 2px solid #969696;
-    border-radius: 8px;
-    width: 100%;
-    padding: 0px;
-    justify-content: space-between;
-    cursor: pointer;
-    color: #FFF !important;
-    transition: 200ms all;
+  border: 2px solid #969696;
+  border-radius: 8px;
+  width: 100%;
+  padding: 0px;
+  justify-content: space-between;
+  cursor: pointer;
+  color: #FFF !important;
+  transition: 200ms all;
 }
 
 .item_chapter:hover {
-    border: 2px solid #8E04C3;
-    background-color: #211428;
+  border: 2px solid #8E04C3;
+  background-color: #211428;
 }
 
 .item_chapter_active {
-    border: 2px solid #8E04C3;
-    background-color: #211428;
+  border: 2px solid #8E04C3;
+  background-color: #211428;
 }
 
 
 .item_chapter_show_lession {
-    overflow: hidden;
-    transition: all 200ms;
-    width: 100%;
-    justify-content: center;
+  overflow: hidden;
+  transition: all 200ms;
+  width: 100%;
+  justify-content: center;
 }
 
 .list_lession {
-    overflow: hidden;
-    transition: all 200ms;
+  overflow: hidden;
+  transition: all 200ms;
 }
 
 .item_lession {
-    padding: 8px;
-    border-radius: 8px;
-    width: 100%;
-    justify-content: start;
-    align-items: center;
-    gap: 4;
+  padding: 8px;
+  border-radius: 8px;
+  width: 100%;
+  justify-content: start;
+  align-items: center;
+  gap: 4;
 }
 
 .item_lession:hover {
-    background-color: #3A0F44;
+  background-color: #3A0F44;
 }
