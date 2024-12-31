@@ -1,6 +1,7 @@
-import { Button, Stack, TextInput } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import ScreenRecorder from "./Screen";
+
+import { Button, Stack, TextInput } from "@mantine/core";
 
 
 const LiveStream: React.FC = () => {
@@ -9,13 +10,14 @@ const LiveStream: React.FC = () => {
   const [en, setEn] = useState<Blob[]>([]);
   const [ws, setWs] = useState<WebSocket | null>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [index, setIndex] = useState<number>(0);
 
   const handleConnect = () => {
     if (!import.meta.env.VITE_BLOB_SERVICE) {
       console.log("connect error");
       return
     }
-    const url = `${import.meta.env.VITE_BLOB_SERVICE}/api/v1/blob-stream/init-stream`
+    const url = `${import.meta.env.VITE_BLOB_SERVICE}/api/v1/blob-stream/init-stream-test?uuid=cee7c1c6-c763-11ef-a0d0-00155d277af3&quantity_360p=localhost:9008`
     const socket = new WebSocket(url);
     socket.onopen = () => {
       console.log("connected successfully!");
@@ -26,32 +28,12 @@ const LiveStream: React.FC = () => {
 
   const sendMess = () => {
     if (ws && ws.readyState === WebSocket.OPEN) {
-      var blobData = new Blob(data.slice(0, 10));
-      ws.send(blobData);
-      setInput("");
-    } else {
-      console.error("WebSocket is not open");
-    }
-
-    if (ws && ws.readyState === WebSocket.OPEN) {
-      var blobData = new Blob(data.slice(10, 20));
-      ws.send(blobData);
-      setInput("");
-    } else {
-      console.error("WebSocket is not open");
-    }
-
-    if (ws && ws.readyState === WebSocket.OPEN) {
-      var blobData = new Blob(data.slice(20, 30));
-      ws.send(blobData);
-      setInput("");
-    } else {
-      console.error("WebSocket is not open");
-    }
-
-    if (ws && ws.readyState === WebSocket.OPEN) {
-      var blobData = new Blob(data.slice(30, 40));
-      ws.send(blobData);
+      // var blobData = new Blob(data.slice(0, 10));
+      // data.forEach(d => {
+      //   ws.send(d);
+      // })
+      ws.send(data[index]);
+      setIndex(index + 1);
       setInput("");
     } else {
       console.error("WebSocket is not open");
@@ -116,7 +98,12 @@ const LiveStream: React.FC = () => {
           </>
         )}
       </div>
-      {!videoUrl && <ScreenRecorder setData={setData} />}
+      {(!videoUrl && ws) &&
+        <ScreenRecorder
+          ws={ws}
+          setData={setData}
+        />
+      }
     </Stack>
   )
 }

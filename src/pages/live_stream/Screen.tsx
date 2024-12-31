@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 export type ScreenRecorderProps = {
+  ws: WebSocket
   setData: React.Dispatch<React.SetStateAction<Blob[]>>
 }
 
@@ -33,7 +34,7 @@ const ScreenRecorder: React.FC<ScreenRecorderProps> = (props) => {
           // Gửi dữ liệu cho parent component
           props.setData((prevData) => [...prevData, event.data]);
 
-          console.log(event.data);  // In chunk ra console để kiểm tra
+          // props.ws.send(event.data)  // In chunk ra console để kiểm tra
         }
       };
 
