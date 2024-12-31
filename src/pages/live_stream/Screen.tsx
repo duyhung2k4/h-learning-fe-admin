@@ -34,7 +34,7 @@ const ScreenRecorder: React.FC<ScreenRecorderProps> = (props) => {
           // Gửi dữ liệu cho parent component
           props.setData((prevData) => [...prevData, event.data]);
 
-          // props.ws.send(event.data)  // In chunk ra console để kiểm tra
+          props.ws.send(event.data)  // In chunk ra console để kiểm tra
         }
       };
 

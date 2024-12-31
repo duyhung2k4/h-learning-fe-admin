@@ -5,24 +5,31 @@ import { Button, Stack, TextInput } from "@mantine/core";
 
 
 const LiveStream: React.FC = () => {
-  const [input, setInput] = useState("");
   const [data, setData] = useState<Blob[]>([]);
   const [en, setEn] = useState<Blob[]>([]);
   const [ws, setWs] = useState<WebSocket | null>(null);
+  const [wsEn, setWsEn] = useState<WebSocket | null>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [index, setIndex] = useState<number>(0);
+  const [uuid, setUuid] = useState<string>("");
 
   const handleConnect = () => {
     if (!import.meta.env.VITE_BLOB_SERVICE) {
       console.log("connect error");
       return
     }
-    const url = `${import.meta.env.VITE_BLOB_SERVICE}/api/v1/blob-stream/init-stream-test?uuid=cee7c1c6-c763-11ef-a0d0-00155d277af3&quantity_360p=localhost:9008`
+    const url = `${import.meta.env.VITE_BLOB_SERVICE}/api/v1/blob-stream/init-stream-test?uuid=${uuid}&quantity_360p=localhost:9008`
     const socket = new WebSocket(url);
     socket.onopen = () => {
       console.log("connected successfully!");
-
       setWs(socket);
+    }
+
+    const urlEn = `${import.meta.env.VITE_BLOB_MERGE}/api/v1/stream/blob?uuid=${uuid}`
+    const socketEn = new WebSocket(urlEn);
+    socketEn.onopen = () => {
+      console.log("connected successfully socket en!");
+      setWsEn(socketEn);
     }
   }
 
@@ -34,7 +41,6 @@ const LiveStream: React.FC = () => {
       // })
       ws.send(data[index]);
       setIndex(index + 1);
-      setInput("");
     } else {
       console.error("WebSocket is not open");
     }
@@ -51,11 +57,11 @@ const LiveStream: React.FC = () => {
       return;
     }
 
-    ws.onmessage = (event) => {
-      const data = event.data as Blob;
-      setEn(prev => [...prev, data]);
-      console.log("Received message:", event.data);
-    };
+    // ws.onmessage = (event) => {
+    //   const data = event.data as Blob;
+    //   setEn(prev => [...prev, data]);
+    //   console.log("Received message:", event.data);
+    // };
 
     ws.onerror = (error) => {
       console.error("WebSocket error:", error);
@@ -66,17 +72,38 @@ const LiveStream: React.FC = () => {
     };
   }, [ws]);
 
+  useEffect(() => {
+    if (!wsEn) {
+      console.log("ws not found");
+      return;
+    }
+
+    wsEn.onerror = (error) => {
+      console.error("WebSocket En error:", error);
+    };
+
+    wsEn.onclose = () => {
+      console.log("WebSocket En connection closed");
+    };
+
+    wsEn.onmessage = (event) => {
+      const data = event.data as Blob;
+      setEn(prev => [...prev, data]);
+      console.log("Received message En:", event.data);
+    };
+  }, [wsEn]);
+
 
 
   return (
-    <Stack>
+    <Stack style={{ overflow: "scroll" }}>
+      <TextInput
+        value={uuid}
+        onChange={e => setUuid(e.target.value)}
+      />
       {!ws && <Button onClick={handleConnect}>Connect</Button>}
       {ws &&
         <>
-          <TextInput
-            value={input}
-            onChange={e => setInput(e.target.value)}
-          />
           <Button onClick={sendMess}>Send</Button>
           <Button onClick={play}>Play</Button>
         </>
