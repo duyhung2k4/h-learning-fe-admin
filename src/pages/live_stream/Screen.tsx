@@ -16,13 +16,17 @@ const ScreenRecorder: React.FC<ScreenRecorderProps> = (props) => {
       const stream = await navigator.mediaDevices.getDisplayMedia({
         video: {
           frameRate: { ideal: 60, max: 60 },
-          width: { ideal: 1920 },
-          height: { ideal: 1080 },
+          width: { ideal: 1920, max: 1920 },
+          height: { ideal: 1080, max: 1080 },
         },
         audio: true,
       });
 
-      const options = { mimeType: 'video/webm; codecs=vp8,opus' };
+      const options = { 
+        mimeType: 'video/webm; codecs=vp8,opus',
+        videoBitsPerSecond: 5000000,
+        audioBitsPerSecond: 128000,
+      };
       mediaRecorder.current = new MediaRecorder(stream, options);
 
       // Lấy từng chunk dữ liệu ngay lập tức
@@ -39,7 +43,7 @@ const ScreenRecorder: React.FC<ScreenRecorderProps> = (props) => {
       };
 
       // Bắt đầu ghi video và âm thanh mỗi 100ms
-      mediaRecorder.current.start(100);
+      mediaRecorder.current.start(1000);
       setIsRecording(true);
     } catch (error) {
       console.error('Lỗi khi bắt đầu ghi màn hình:', error);
@@ -65,23 +69,27 @@ const ScreenRecorder: React.FC<ScreenRecorderProps> = (props) => {
   }, [isRecording, data]);  // Khi isRecording hoặc data thay đổi
 
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <h1>Screen Recorder</h1>
       <button onClick={isRecording ? stopRecording : startRecording}>
         {isRecording ? 'Dừng ghi' : 'Bắt đầu ghi'}
       </button>
-      <div>
+      {/* <div style={{ width: "100%" }}>
         <h3>Video đã ghi:</h3>
         <video
           controls
-          style={{ width: '100%', maxHeight: '500px' }}
+          style={{ 
+            width: '100%',
+            height: 'auto',
+            objectFit: "cover",
+          }}
           src={videoUrl || ""}
           autoPlay
         />
         <a href={videoUrl || ""} download="screen-recording.webm">
           Tải video
         </a>
-      </div>
+      </div> */}
 
       {/* Hiển thị số lượng chunk trong thời gian thực */}
       <div>
