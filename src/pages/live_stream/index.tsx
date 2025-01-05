@@ -86,10 +86,25 @@ const LiveStream: React.FC = () => {
       console.log("WebSocket En connection closed");
     };
 
+    // wsEn.onmessage = (event) => {
+    //   const data = event.data as Blob;
+    //   setEn(prev => [...prev, data]);
+    //   console.log("Received message En:", event.data);
+    // };
+
     wsEn.onmessage = (event) => {
-      const data = event.data as Blob;
-      setEn(prev => [...prev, data]);
-      console.log("Received message En:", event.data);
+      if (event.data instanceof Blob) {
+        const blob = event.data;
+        console.log("Blob type:", blob.type);
+
+        if (blob.type.startsWith("video/")) {
+          console.log("This is a video file of type:", blob.type);
+        } else {
+          console.log("Not a video file");
+        }
+      } else {
+        console.log("Data is not a Blob");
+      }
     };
   }, [wsEn]);
 

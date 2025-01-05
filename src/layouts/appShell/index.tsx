@@ -22,6 +22,7 @@ const AppshellLayout: React.FC = () => {
             ROUTER.DASH_BOARD,
             ROUTER.MANAGER_COURSE,
             ROUTER.LIVE_STREAM,
+            ROUTER.VIDEO_STREAM,
         ];
 
         return list;

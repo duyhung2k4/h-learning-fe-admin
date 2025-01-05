@@ -33,7 +33,7 @@
     "@types/node": "^22.7.3",
     "axios": "^1.7.7",
     "dayjs": "^1.11.13",
-    "hls.js": "^1.5.17",
+    "hls.js": "^1.5.18",
     "js-cookie": "^3.0.5",
     "mantine-react-table": "^2.0.0-beta.6",
     "react": "^18.3.1",

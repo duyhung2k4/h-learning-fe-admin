@@ -24,6 +24,7 @@ export type FieldRouter =
     | "EDIT_COURSE"
     | "EDIT_LESSION"
     | "LIVE_STREAM"
+    | "VIDEO_STREAM"
 export const ROUTER: Record<FieldRouter, ObjectRouter> = {
     LOGIN: {
         href: "/login",
@@ -78,6 +79,12 @@ export const ROUTER: Record<FieldRouter, ObjectRouter> = {
       href: "/live-stream",
       type: "protected",
       name: "Live stream",
+      icon: IconBrandYoutube
+    },
+    VIDEO_STREAM: {
+      href: "/video-stream",
+      type: "protected",
+      name: "Video stream",
       icon: IconBrandYoutube
     }
 }
