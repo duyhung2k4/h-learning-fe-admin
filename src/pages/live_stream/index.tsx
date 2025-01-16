@@ -19,6 +19,7 @@ const LiveStream: React.FC = () => {
       return
     }
     const url = `${import.meta.env.VITE_BLOB_SERVICE}/api/v1/blob-stream/init-stream?uuid=${uuid}&quantity_360p=localhost:9008&ip_merge_blob=localhost:9007`
+    console.log("CCCCCCCCCCC: ", url)
     const socket = new WebSocket(url);
     socket.onopen = () => {
       console.log("connected successfully!");
