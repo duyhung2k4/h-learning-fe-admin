@@ -25,6 +25,12 @@
     color: #FFF;
 }
 
+.text_size_xs {
+  font-size: 14px;
+  font-weight: 500;
+  color: #FFF;
+}
+
 .limit_1_line {
     display: -webkit-box;
     display: box;

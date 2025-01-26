@@ -1,4 +1,4 @@
-.option_create_quizz {
+.option_create_quizz, .quizz_setting {
   padding: 16px 0px;
   border: 2px dashed #969696;
   border-radius: 8px;
@@ -7,4 +7,19 @@
 
 .option_create_quizz:hover {
   background-color: #353535;
+}
+
+.input {
+  & :global(.mantine-Input-input) {
+    outline: none !important;
+    background-color: #151517 !important;
+    border-bottom: 2px solid #211428 !important;
+    border-radius: 0px !important;
+  }
+  & :global(.mantine-Input-input):focus {
+    outline: none !important;
+    background-color: #151517 !important;
+    border-bottom: 2px solid #6E6191 !important;
+    border-radius: 0px !important;
+  }
 }

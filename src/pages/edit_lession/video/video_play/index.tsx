@@ -1,9 +1,10 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import Hls from 'hls.js';
 
 import { VideoLessionModel } from '@/model/video_lession';
 import { Box, Group, Slider, Stack } from '@mantine/core';
 import { IconMaximize, IconMaximizeOff, IconPlayerPauseFilled, IconPlayerPlayFilled } from '@tabler/icons-react';
+import { EditLessionVideoContext, EditLessionVideoContextType } from '..';
 
 import iconClass from "@/styles/icon.module.css";
 
@@ -16,12 +17,16 @@ const VideoPlayer: React.FC<VideoPlayerProps> = (props) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const boxVideoRef = useRef<HTMLDivElement | null>(null);
 
+  const { 
+    duration, 
+    setDuration,
+  } = useContext<EditLessionVideoContextType>(EditLessionVideoContext);
+
   const [progress, setProgress] = useState<number>(0);
   const [isDragging, setIsDragging] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
-  const [duration, setDuration] = useState<number>(0);
 
   const [hoveredValue, setHoveredValue] = useState<number | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState<number | null>(null);

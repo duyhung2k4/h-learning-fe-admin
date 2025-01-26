@@ -1,10 +1,10 @@
 import React, { Suspense, useEffect, useMemo, useState } from "react";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
 import { useNavigate, useOutlet } from "react-router";
 import { ActionIcon, Avatar, Box, Group, LoadingOverlay, Stack, Text } from '@mantine/core';
 import { ObjectRouter, ROUTER } from "@/constants/router";
-import { TOKEN_TYPE } from "@/model/variable";
+// import { TOKEN_TYPE } from "@/model/variable";
 import { IconBrandDatabricks, IconSquareArrowLeftFilled, IconSquareArrowRightFilled } from "@tabler/icons-react";
 import { SIZE } from "@/constants/size";
 
@@ -21,8 +21,6 @@ const AppshellLayout: React.FC = () => {
             ROUTER.HOME,
             ROUTER.DASH_BOARD,
             ROUTER.MANAGER_COURSE,
-            ROUTER.LIVE_STREAM,
-            ROUTER.VIDEO_STREAM,
         ];
 
         return list;
@@ -37,12 +35,12 @@ const AppshellLayout: React.FC = () => {
         navigation(href);
     }
 
-    const handleLogout = () => {
-        Cookies.remove(TOKEN_TYPE.ACCESS_TOKEN);
-        Cookies.remove(TOKEN_TYPE.REFRESH_TOKEN);
+    // const handleLogout = () => {
+    //     Cookies.remove(TOKEN_TYPE.ACCESS_TOKEN);
+    //     Cookies.remove(TOKEN_TYPE.REFRESH_TOKEN);
 
-        navigation(ROUTER.HOME.href);
-    }
+    //     navigation(ROUTER.HOME.href);
+    // }
 
     useEffect(() => {
         if (!show) {
@@ -160,7 +158,7 @@ const AppshellLayout: React.FC = () => {
                         alignItems: "start",
                         flex: 1,
                         padding: 0,
-                        overflow: "scroll",
+                        overflow: "hidden",
                     }}
                 >
                     {outlet}
