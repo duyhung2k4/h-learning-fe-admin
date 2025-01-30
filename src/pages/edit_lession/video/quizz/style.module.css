@@ -23,3 +23,12 @@
     border-radius: 0px !important;
   }
 }
+
+.btn_add_option {
+  background-color: #151517;
+  border-radius: 0px !important;
+}
+
+.btn_add_option:hover {
+  background-color: #211428;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import {
   Checkbox,
@@ -6,24 +6,21 @@ import {
   Radio,
   Stack,
   TextInput,
+  Tooltip,
 } from "@mantine/core";
 
 import classes from "./style.module.css";
+import { IconTrash } from "@tabler/icons-react";
 
 
 
 export type CheckBoxEditProps = {
   isMultipleResult: boolean
-  defaultValue: string
+  value: string
   onChange: (e: string) => void
+  onDelete: () => void
 }
 const CheckBoxEdit: React.FC<CheckBoxEditProps> = (props) => {
-  const [text, setText] = useState<string>(props.defaultValue);
-
-  useEffect(() => {
-    props.onChange(text);
-  }, [text]);
-
   const Component = props.isMultipleResult ? Checkbox : Radio;
 
 
@@ -32,14 +29,17 @@ const CheckBoxEdit: React.FC<CheckBoxEditProps> = (props) => {
     <Stack>
       <Group>
         <Component
-          value={text}
+          value={props.value}
         />
         <TextInput
-          value={text}
+          value={props.value}
           flex={1}
           className={classes.input}
-          onChange={e => setText(e.target.value)}
+          onChange={e => props.onChange(e.target.value)}
         />
+        <Tooltip label="Xóa đáp án">
+          <IconTrash onClick={props.onDelete} />
+        </Tooltip>
       </Group>
     </Stack>
   )

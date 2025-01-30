@@ -59,7 +59,7 @@ const QuizzVideo: React.FC = () => {
   const Component = isMultipleResult ? Checkbox.Group : Radio.Group;
 
   const handleSliderChange = (value: number) => {
-    setProgress(value); // Cập nhật khi kéo
+    setProgress(value);
   };
 
   const formatTime = (time: number) => {
@@ -68,15 +68,16 @@ const QuizzVideo: React.FC = () => {
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
 
-  useEffect(() => {
-    if(!isMultipleResult && formCreateQuizz.values.results.length > 1) {
+  useEffect(() => {    
+    if (!isMultipleResult && formCreateQuizz.values.results.length > 1) {
       formCreateQuizz.setValues({
         ...formCreateQuizz.values,
         results: [formCreateQuizz.values.results[0]]
       })
     }
     setOptions(options);
-  }, [isMultipleResult]);
+  }, [isMultipleResult, options]);
+
 
 
 
@@ -172,9 +173,9 @@ const QuizzVideo: React.FC = () => {
             </Stack>
             <Component
               value={
-                isMultipleResult 
-                ? formCreateQuizz.values.results as any
-                : (formCreateQuizz.values.results.length > 0 ? formCreateQuizz.values.results[0] as any : undefined)
+                isMultipleResult
+                  ? formCreateQuizz.values.results as any
+                  : (formCreateQuizz.values.results.length > 0 ? formCreateQuizz.values.results[0] as any : undefined)
               }
               onChange={e => {
                 formCreateQuizz.setValues({
@@ -189,11 +190,15 @@ const QuizzVideo: React.FC = () => {
                     return (
                       <CheckBoxEdit
                         key={i}
-                        defaultValue={item}
+                        value={item}
                         isMultipleResult={isMultipleResult}
                         onChange={e => {
                           const newOptions = options.map((o, index) => index === i ? e : o);
                           setOptions(newOptions);
+                        }}
+                        onDelete={() => {
+                          const updatedOptions = options.filter((_, index) => index !== i);
+                          setOptions([...updatedOptions]);
                         }}
                       />
                     )
@@ -202,10 +207,11 @@ const QuizzVideo: React.FC = () => {
               </Stack>
             </Component>
             <Button
-              mt={20}
+              className={classes.btn_add_option}
               onClick={() => {
                 setOptions([...options, ""]);
               }}
+              leftSection={<IconPlus />}
             >Thêm đáp án</Button>
             <Group w={"100%"} justify="end">
               <Button color="red">Hủy</Button>
