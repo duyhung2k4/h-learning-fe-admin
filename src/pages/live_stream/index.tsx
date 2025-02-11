@@ -3,10 +3,14 @@ import ScreenRecorder from "./Screen";
 
 import { Button, Stack, TextInput } from "@mantine/core";
 
+const ipQuantity = "47.129.38.43";
+const ipMergeBlob = "18.140.5.128";
+
+
 
 const LiveStream: React.FC = () => {
   const [data, setData] = useState<Blob[]>([]);
-  const [en, setEn] = useState<Blob[]>([]);
+  const [en, _] = useState<Blob[]>([]);
   const [ws, setWs] = useState<WebSocket | null>(null);
   const [wsEn, setWsEn] = useState<WebSocket | null>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
@@ -18,7 +22,7 @@ const LiveStream: React.FC = () => {
       console.log("connect error");
       return
     }
-    const url = `${import.meta.env.VITE_BLOB_SERVICE}/api/v1/blob-stream/init-stream?uuid=${uuid}&quantity_360p=localhost:9008&ip_merge_blob=localhost:9007`
+    const url = `${import.meta.env.VITE_BLOB_SERVICE}/api/v1/blob-stream/init-stream?uuid=${uuid}&quantity_360p=${ipQuantity}:9008&ip_merge_blob=${ipMergeBlob}:9007`
     console.log("CCCCCCCCCCC: ", url)
     const socket = new WebSocket(url);
     socket.onopen = () => {

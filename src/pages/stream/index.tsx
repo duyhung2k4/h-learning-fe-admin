@@ -27,7 +27,7 @@ const Streaming: React.FC<StreamingProps> = (_) => {
   const [tooltipPosition, setTooltipPosition] = useState<number | null>(null);
 
   const videoSrc = useMemo(() => {
-    return `http://localhost:10007/api/v1/stream/m3u8/${uuid}/stream.m3u8`;
+    return `http://18.140.5.128:10007/api/v1/stream/m3u8/${uuid}/stream.m3u8`;
   }, [uuid]);
 
   useEffect(() => {

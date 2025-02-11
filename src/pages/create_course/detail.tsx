@@ -1,5 +1,5 @@
-import React, { useContext, useRef } from "react";
-import DropzoneCustom, { DropzoneCustomRef } from "@/components/dropzone";
+import React, { useContext } from "react";
+import DropzoneCustom from "@/components/dropzone";
 import EditorCustom from "@/components/editor";
 
 import { Stack, Text } from "@mantine/core";

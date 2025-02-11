@@ -7,7 +7,7 @@ export type ScreenRecorderProps = {
 
 const ScreenRecorder: React.FC<ScreenRecorderProps> = (props) => {
   const [isRecording, setIsRecording] = useState(false);
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [_, setVideoUrl] = useState<string | null>(null);
   const [data, setData] = useState<Blob[]>([]); // State để lưu các chunk
   const mediaRecorder = useRef<MediaRecorder | null>(null);
 
