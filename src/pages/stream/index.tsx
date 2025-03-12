@@ -27,7 +27,9 @@ const Streaming: React.FC<StreamingProps> = (_) => {
   const [tooltipPosition, setTooltipPosition] = useState<number | null>(null);
 
   const videoSrc = useMemo(() => {
-    return `http://18.140.5.128:10007/api/v1/stream/m3u8/${uuid}/stream.m3u8`;
+    const quantity = "360";
+    const filename = "index.m3u8";
+    return `${import.meta.env.VITE_UPLOAD_VIDEO_HLS}/api/v1/video/${uuid}/${quantity}/${filename}`;
   }, [uuid]);
 
   useEffect(() => {

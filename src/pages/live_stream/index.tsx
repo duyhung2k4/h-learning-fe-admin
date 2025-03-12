@@ -3,16 +3,13 @@ import ScreenRecorder from "./Screen";
 
 import { Button, Stack, TextInput } from "@mantine/core";
 
-const ipQuantity = "47.129.38.43";
-const ipMergeBlob = "18.140.5.128";
-
 
 
 const LiveStream: React.FC = () => {
   const [data, setData] = useState<Blob[]>([]);
   const [en, _] = useState<Blob[]>([]);
   const [ws, setWs] = useState<WebSocket | null>(null);
-  const [wsEn, setWsEn] = useState<WebSocket | null>(null);
+  // const [wsEn, setWsEn] = useState<WebSocket | null>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [index, setIndex] = useState<number>(0);
   const [uuid, setUuid] = useState<string>("");
@@ -22,28 +19,16 @@ const LiveStream: React.FC = () => {
       console.log("connect error");
       return
     }
-    const url = `${import.meta.env.VITE_BLOB_SERVICE}/api/v1/blob-stream/init-stream?uuid=${uuid}&quantity_360p=${ipQuantity}:9008&ip_merge_blob=${ipMergeBlob}:9007`
-    console.log("CCCCCCCCCCC: ", url)
+    const url = `${import.meta.env.VITE_BLOB_SERVICE}/api/v1/blob-stream/stream-encoding?uuid=${uuid}`
     const socket = new WebSocket(url);
     socket.onopen = () => {
       console.log("connected successfully!");
       setWs(socket);
     }
-
-    const urlEn = `${import.meta.env.VITE_BLOB_MERGE}/api/v1/stream/blob?uuid=${uuid}`
-    const socketEn = new WebSocket(urlEn);
-    socketEn.onopen = () => {
-      console.log("connected successfully socket en!");
-      setWsEn(socketEn);
-    }
   }
 
   const sendMess = () => {
     if (ws && ws.readyState === WebSocket.OPEN) {
-      // var blobData = new Blob(data.slice(0, 10));
-      // data.forEach(d => {
-      //   ws.send(d);
-      // })
       ws.send(data[index]);
       setIndex(index + 1);
     } else {
@@ -62,12 +47,6 @@ const LiveStream: React.FC = () => {
       return;
     }
 
-    // ws.onmessage = (event) => {
-    //   const data = event.data as Blob;
-    //   setEn(prev => [...prev, data]);
-    //   console.log("Received message:", event.data);
-    // };
-
     ws.onerror = (error) => {
       console.error("WebSocket error:", error);
     };
@@ -76,42 +55,6 @@ const LiveStream: React.FC = () => {
       console.log("WebSocket connection closed");
     };
   }, [ws]);
-
-  useEffect(() => {
-    if (!wsEn) {
-      console.log("ws not found");
-      return;
-    }
-
-    wsEn.onerror = (error) => {
-      console.error("WebSocket En error:", error);
-    };
-
-    wsEn.onclose = () => {
-      console.log("WebSocket En connection closed");
-    };
-
-    // wsEn.onmessage = (event) => {
-    //   const data = event.data as Blob;
-    //   setEn(prev => [...prev, data]);
-    //   console.log("Received message En:", event.data);
-    // };
-
-    wsEn.onmessage = (event) => {
-      if (event.data instanceof Blob) {
-        const blob = event.data;
-        console.log("Blob type:", blob.type);
-
-        if (blob.type.startsWith("video/")) {
-          console.log("This is a video file of type:", blob.type);
-        } else {
-          console.log("Not a video file");
-        }
-      } else {
-        console.log("Data is not a Blob");
-      }
-    };
-  }, [wsEn]);
 
 
 
