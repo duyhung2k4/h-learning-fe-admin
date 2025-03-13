@@ -45,7 +45,7 @@ const BaseInfo: React.FC = () => {
     });
 
     const setThumnailInit = async () => {
-        const url = `${import.meta.env.VITE_API}/api/v1/file/thumnail_course/${course.thumnail}`;
+        const url = `${import.meta.env.VITE_API}/api/v1/file/thumbnail_course/${course.thumnail}`;
         const { file, error } = await convertUrlToFile(url);
         if(error || file === null) {
             console.log(error);

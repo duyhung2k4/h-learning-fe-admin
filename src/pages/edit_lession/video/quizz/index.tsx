@@ -68,7 +68,7 @@ const QuizzVideo: React.FC = () => {
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
 
-  useEffect(() => {    
+  useEffect(() => {
     if (!isMultipleResult && formCreateQuizz.values.results.length > 1) {
       formCreateQuizz.setValues({
         ...formCreateQuizz.values,

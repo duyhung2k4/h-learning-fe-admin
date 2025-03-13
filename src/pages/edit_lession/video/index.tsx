@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
 import UploadVideo from "./upload_video";
 import VideoPlayer from "./video_play";
-import QuizzVideo from "./quizz";
 
 import { Stack } from "@mantine/core";
 import { useDetailVideoLessionQuery } from "@/redux/api/video_lession";
@@ -52,10 +51,10 @@ const Video: React.FC = () => {
             videoLession={videoLession}
           />
         }
-        {
+        {/* {
           videoLession?.url360p &&
           <QuizzVideo />
-        }
+        } */}
       </Stack>
     </EditLessionVideoContext.Provider>
   )
