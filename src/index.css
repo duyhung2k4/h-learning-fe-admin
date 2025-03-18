@@ -1,36 +1,36 @@
 body {
-    font-family: "Quicksand", sans-serif !important;
-    line-height: 1.5;
-    font-weight: 500;
+  font-family: "Quicksand", sans-serif !important;
+  line-height: 1.5;
+  font-weight: 500;
 
-    color-scheme: light dark !important;
-    color: #FFF !important;
-    background-color: #151517 !important;
+  color-scheme: light dark !important;
+  color: #FFF !important;
+  background-color: #151517 !important;
 
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 /* width */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+  width: 8px;
+  height: 8px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: rgb(97, 96, 96);
-    border-radius: 10px;
+  background: rgb(97, 96, 96);
+  border-radius: 10px;
 }
 
 .mantine-Input-input,
 .mantine-PasswordInput-innerInput {
-    &:focus {
-        outline: 2px solid #6E6191 !important;
-    }
+  &:focus {
+    outline: 2px solid #6E6191 !important;
+  }
 }
 
 .mantine-Slider-track::before {
@@ -41,9 +41,11 @@ body {
 video::-webkit-media-controls {
   display: none !important;
 }
+
 video::-webkit-media-controls-enclosure {
   display: none !important;
 }
+
 video::-webkit-media-controls-play-button {
   display: none !important;
 }

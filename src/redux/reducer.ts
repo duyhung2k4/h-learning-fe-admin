@@ -8,6 +8,7 @@ import { chapterApi } from "./api/chapter";
 import { lessionApi } from "./api/lession";
 import { videoLessionApi } from "./api/video_lession";
 import { uploadVideoMp4Api } from "./api/upload_video";
+import { quizzApi } from "./api/quizz";
 
 
 
@@ -19,5 +20,6 @@ export const rootReducer = combineReducers({
     [lessionApi.reducerPath]: lessionApi.reducer,
     [videoLessionApi.reducerPath]: videoLessionApi.reducer,
     [uploadVideoMp4Api.reducerPath]: uploadVideoMp4Api.reducer,
+    [quizzApi.reducerPath]: quizzApi.reducer,
     authSlice: authSlice.reducer,
 })

@@ -7,6 +7,7 @@ import { chapterApi } from "./api/chapter";
 import { lessionApi } from "./api/lession";
 import { videoLessionApi } from "./api/video_lession";
 import { uploadVideoMp4Api } from "./api/upload_video";
+import { quizzApi } from "./api/quizz";
 
 
 
@@ -18,6 +19,7 @@ const middleware = [
     lessionApi.middleware,
     videoLessionApi.middleware,
     uploadVideoMp4Api.middleware,
+    quizzApi.middleware,
 ]
 
 const store = configureStore({

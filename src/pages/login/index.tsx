@@ -1,14 +1,12 @@
 import React from "react";
 
-import { Button, Stack, Text, TextInput } from "@mantine/core";
+import { Button, PasswordInput, Stack, Text, TextInput } from "@mantine/core";
 import { useLoginMutation } from "@/redux/api/auth";
 import { useForm } from "@mantine/form";
 import { LoginRequest } from "@/dto/request/auth";
 import { useNotification } from "@/hook/notification.hook";
 import { useNavigate } from "react-router";
 import { ROUTER } from "@/constants/router";
-
-import PasswordInputCustom from "@/components/passwordInput";
 
 
 
@@ -52,7 +50,7 @@ const Login: React.FC = () => {
                         placeholder="Email"
                         {...formLogin.getInputProps("username")}
                     />
-                    <PasswordInputCustom
+                    <PasswordInput
                         placeholder="Mật khẩu"
                         {...formLogin.getInputProps("password")}
                     />
