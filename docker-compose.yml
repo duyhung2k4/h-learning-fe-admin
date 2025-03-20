@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  h-learning-fe-admin:
+    image: nguyen040904/h-learning-fe-admin:latest
+    ports:
+      - "3001:80"
+    restart: always

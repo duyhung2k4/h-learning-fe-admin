@@ -21,7 +21,6 @@ const QuizzVideo: React.FC = () => {
 
   const {
     data: dataQuizzByEntityIdRes,
-    isLoading: loadingQuizzByEntityId,
     refetch: refetchQuizzByEntityId,
   } = useGetQuizzByEntityIdQuery(courseId);
 
