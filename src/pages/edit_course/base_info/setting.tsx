@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
-import { Group, NumberInput, Stack, Switch, Text, Textarea } from "@mantine/core";
-import { IconCoin, IconFileInvoice, IconLabel, IconUsersGroup } from "@tabler/icons-react";
+import { Group, NumberInput, Stack, Text, Textarea } from "@mantine/core";
+import { IconCoin, IconFileInvoice, IconLabel } from "@tabler/icons-react";
 import { CreateCourseContext, TypeCreateCourseContext } from ".";
 
 import classes from "./styles.module.css";
@@ -112,31 +112,6 @@ export const Setting: React.FC = () => {
                             section: { display: "none" }
                         }}
                         {...formEditInfoCourse.getInputProps("value")}
-                    />
-                </Group>
-
-                <Group
-                    style={{
-                        alignItems: "start",
-                        justifyContent: "start",
-                        padding: 8,
-                        border: "2px solid #40C057",
-                        borderRadius: 8
-                    }}
-                    className={classes.info_config}
-                    gap={6}
-                >
-                    <IconUsersGroup size={30} />
-                    <Stack flex={1} gap={0}>
-                        <Text style={{ color: "#FFF" }}>Đa thiết bị</Text>
-                        <Text>
-                            Cho phép học viên đăng nhập trên nhiều thiết bị. Nếu tắt trường này, học viên chỉ đăng nhập được tối đa 3 thiết bị với cùng 1 tài khoản
-                        </Text>
-                    </Stack>
-                    <Switch 
-                        color="green" 
-                        defaultChecked={formEditInfoCourse.values.multiLogin}
-                        {...formEditInfoCourse.getInputProps("multiLogin")}
                     />
                 </Group>
             </Stack>

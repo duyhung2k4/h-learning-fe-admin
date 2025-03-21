@@ -15,10 +15,10 @@ import { useForm } from "@mantine/form";
 import { IconPlus } from "@tabler/icons-react";
 import { useCreateQuizzMutation, useUpdateQuizzMutation } from "@/redux/api/quizz";
 import { useParams } from "react-router";
+import { QuizzModel } from "@/model/quizz";
 
 import classes from "./style.module.css";
 import textClasses from "@/styles/text.module.css";
-import { QuizzModel } from "@/model/quizz";
 
 
 

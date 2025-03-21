@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import HeaderPage from "@/components/header_page";
 
-import { ActionIcon, Button, Grid, Group, Stack, Text, TextInput, Tooltip } from "@mantine/core";
-import { IconAdjustments, IconPlus, IconSearch } from "@tabler/icons-react";
+import { Button, Grid, Group, Stack, Text, TextInput } from "@mantine/core";
+import { IconPlus, IconSearch } from "@tabler/icons-react";
 import { useNavigate } from "react-router";
 import { ROUTER } from "@/constants/router";
 import { useGetAllCourseQuery } from "@/redux/api/course";
@@ -13,6 +13,7 @@ import CardCourse from "./card";
 
 
 const ManagerCourse: React.FC = () => {
+  const [search, setSearch] = useState<string>("");
 
   const navigation = useNavigate();
 
@@ -25,9 +26,12 @@ const ManagerCourse: React.FC = () => {
     navigation(ROUTER.CREATE_COURSE.href);
   }
 
-  const courses = useMemo(() => {
-    return courseData?.data || [];
-  }, [courseData]);
+  const courses = courseData?.data || [];
+  const courseFilter = useMemo(() => {
+    if(search === "") return courses;
+
+    return courses.filter(item => item.name.includes(search));
+  }, [courses, search]);
 
   useEffect(() => {
     refetch();
@@ -62,15 +66,9 @@ const ManagerCourse: React.FC = () => {
               flex={1}
               placeholder="Tìm theo tên khóa học"
               leftSection={<IconSearch />}
+              value={search}
+              onChange={e => setSearch(e.target.value)}
             />
-            <Tooltip label="Bộ lọc">
-              <ActionIcon
-                size={45}
-                style={{ borderRadius: 8 }}
-              >
-                <IconAdjustments />
-              </ActionIcon>
-            </Tooltip>
           </Group>
         </Group>
       </HeaderPage>
@@ -84,7 +82,7 @@ const ManagerCourse: React.FC = () => {
       >
         <Grid>
           {
-            courses.map(c =>
+            courseFilter.map(c =>
               <Grid.Col span={{ xs: 6, md: 4, lg: 3 }} key={c.ID}>
                 <CardCourse {...c} />
               </Grid.Col>

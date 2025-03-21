@@ -2,7 +2,6 @@ import React, { createContext, useEffect, useMemo, useState } from "react";
 import HeaderPage from "@/components/header_page";
 import BaseInfo from "./base_info";
 import Lessions from "./lessions";
-import Vouchers from "./vouchers";
 
 import { ROUTER } from "@/constants/router";
 import { Group, Stack, Tabs, Text, Tooltip } from "@mantine/core";
@@ -126,9 +125,6 @@ const EditCourse: React.FC = () => {
               <Tabs.Tab value={ROUTER.EDIT_COURSE.hash?.lessions || ""}>
                 Bài học
               </Tabs.Tab>
-              <Tabs.Tab value={ROUTER.EDIT_COURSE.hash?.vouchers || ""}>
-                Khuyến mãi
-              </Tabs.Tab>
             </Tabs.List>
 
             <Tabs.Panel value={ROUTER.EDIT_COURSE.hash?.baseInfo || ""}>
@@ -136,9 +132,6 @@ const EditCourse: React.FC = () => {
             </Tabs.Panel>
             <Tabs.Panel value={ROUTER.EDIT_COURSE.hash?.lessions || ""}>
               <Lessions />
-            </Tabs.Panel>
-            <Tabs.Panel value={ROUTER.EDIT_COURSE.hash?.vouchers || ""}>
-              <Vouchers />
             </Tabs.Panel>
           </Tabs>
         </Stack>
